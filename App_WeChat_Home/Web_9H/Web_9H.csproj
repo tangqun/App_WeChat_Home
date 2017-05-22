@@ -89,13 +89,93 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\AdminLTE.css" />
+    <Content Include="css\AdminLTE.min.css" />
+    <Content Include="css\alt\AdminLTE-bootstrap-social.css" />
+    <Content Include="css\alt\AdminLTE-bootstrap-social.min.css" />
+    <Content Include="css\alt\AdminLTE-fullcalendar.css" />
+    <Content Include="css\alt\AdminLTE-fullcalendar.min.css" />
+    <Content Include="css\alt\AdminLTE-select2.css" />
+    <Content Include="css\alt\AdminLTE-select2.min.css" />
+    <Content Include="css\alt\AdminLTE-without-plugins.css" />
+    <Content Include="css\alt\AdminLTE-without-plugins.min.css" />
+    <Content Include="css\skins\skin-black-light.css" />
+    <Content Include="css\skins\skin-black-light.min.css" />
+    <Content Include="css\skins\skin-black.css" />
+    <Content Include="css\skins\skin-black.min.css" />
+    <Content Include="css\skins\skin-blue-light.css" />
+    <Content Include="css\skins\skin-blue-light.min.css" />
+    <Content Include="css\skins\skin-blue.css" />
+    <Content Include="css\skins\skin-blue.min.css" />
+    <Content Include="css\skins\skin-green-light.css" />
+    <Content Include="css\skins\skin-green-light.min.css" />
+    <Content Include="css\skins\skin-green.css" />
+    <Content Include="css\skins\skin-green.min.css" />
+    <Content Include="css\skins\skin-purple-light.css" />
+    <Content Include="css\skins\skin-purple-light.min.css" />
+    <Content Include="css\skins\skin-purple.css" />
+    <Content Include="css\skins\skin-purple.min.css" />
+    <Content Include="css\skins\skin-red-light.css" />
+    <Content Include="css\skins\skin-red-light.min.css" />
+    <Content Include="css\skins\skin-red.css" />
+    <Content Include="css\skins\skin-red.min.css" />
+    <Content Include="css\skins\skin-yellow-light.css" />
+    <Content Include="css\skins\skin-yellow-light.min.css" />
+    <Content Include="css\skins\skin-yellow.css" />
+    <Content Include="css\skins\skin-yellow.min.css" />
+    <Content Include="css\skins\_all-skins.css" />
+    <Content Include="css\skins\_all-skins.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="img\avatar.png" />
+    <Content Include="img\avatar04.png" />
+    <Content Include="img\avatar2.png" />
+    <Content Include="img\avatar3.png" />
+    <Content Include="img\avatar5.png" />
+    <Content Include="img\boxed-bg.jpg" />
+    <Content Include="img\boxed-bg.png" />
+    <Content Include="img\credit\american-express.png" />
+    <Content Include="img\credit\cirrus.png" />
+    <Content Include="img\credit\mastercard.png" />
+    <Content Include="img\credit\mestro.png" />
+    <Content Include="img\credit\paypal.png" />
+    <Content Include="img\credit\paypal2.png" />
+    <Content Include="img\credit\visa.png" />
+    <Content Include="img\default-50x50.gif" />
+    <Content Include="img\icons.png" />
+    <Content Include="img\photo1.png" />
+    <Content Include="img\photo2.png" />
+    <Content Include="img\photo3.jpg" />
+    <Content Include="img\photo4.jpg" />
+    <Content Include="img\user1-128x128.jpg" />
+    <Content Include="img\user2-160x160.jpg" />
+    <Content Include="img\user3-128x128.jpg" />
+    <Content Include="img\user4-128x128.jpg" />
+    <Content Include="img\user5-128x128.jpg" />
+    <Content Include="img\user6-128x128.jpg" />
+    <Content Include="img\user7-128x128.jpg" />
+    <Content Include="img\user8-128x128.jpg" />
+    <Content Include="js\app.js" />
+    <Content Include="js\app.min.js" />
+    <Content Include="js\demo.js" />
+    <Content Include="js\pages\dashboard.js" />
+    <Content Include="js\pages\dashboard2.js" />
+    <Content Include="plugins\bootstrap-3.3.7\css\bootstrap-theme.css" />
+    <Content Include="plugins\bootstrap-3.3.7\css\bootstrap-theme.min.css" />
+    <Content Include="plugins\bootstrap-3.3.7\css\bootstrap.css" />
+    <Content Include="plugins\bootstrap-3.3.7\css\bootstrap.min.css" />
+    <Content Include="plugins\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="plugins\bootstrap-3.3.7\js\bootstrap.js" />
+    <Content Include="plugins\bootstrap-3.3.7\js\bootstrap.min.js" />
+    <Content Include="plugins\bootstrap-3.3.7\js\npm.js" />
+    <Content Include="plugins\jquery-2.2.4\jquery.js" />
+    <Content Include="plugins\jquery-2.2.4\jquery.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AppController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -104,6 +184,17 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="plugins\bootstrap-3.3.7\css\bootstrap-theme.css.map" />
+    <Content Include="plugins\bootstrap-3.3.7\css\bootstrap-theme.min.css.map" />
+    <Content Include="plugins\bootstrap-3.3.7\css\bootstrap.css.map" />
+    <Content Include="plugins\bootstrap-3.3.7\css\bootstrap.min.css.map" />
+    <Content Include="plugins\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="plugins\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="plugins\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="plugins\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="plugins\jquery-2.2.4\jquery.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -114,8 +205,17 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\App\" />
-    <Folder Include="Views\Home\" />
+    <Folder Include="Views\Login\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Helper_9H\Helper_9H.csproj">
+      <Project>{ccae3ddd-2723-445a-bae8-162c927917e9}</Project>
+      <Name>Helper_9H</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model_9H\Model_9H.csproj">
+      <Project>{47008bc2-98d0-4610-b529-0652c367cc0d}</Project>
+      <Name>Model_9H</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
