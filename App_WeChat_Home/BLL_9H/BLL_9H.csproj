@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +44,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL_9H\DAL_9H.csproj">
+      <Project>{85508fcb-935f-4157-b303-9e416912512a}</Project>
+      <Name>DAL_9H</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Helper_9H\Helper_9H.csproj">
+      <Project>{ccae3ddd-2723-445a-bae8-162c927917e9}</Project>
+      <Name>Helper_9H</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IBLL_9H\IBLL_9H.csproj">
+      <Project>{c2edc61e-c2af-41be-a170-b24a239254c5}</Project>
+      <Name>IBLL_9H</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IDAL_9H\IDAL_9H.csproj">
+      <Project>{89d464d8-0340-4fd8-9a37-3060dc9af941}</Project>
+      <Name>IDAL_9H</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model_9H\Model_9H.csproj">
+      <Project>{47008bc2-98d0-4610-b529-0652c367cc0d}</Project>
+      <Name>Model_9H</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
