@@ -48,6 +48,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -160,8 +164,6 @@
     <Content Include="js\demo.js" />
     <Content Include="js\pages\dashboard.js" />
     <Content Include="js\pages\dashboard2.js" />
-    <Content Include="OverLoad\ControllerExt.cs" />
-    <Content Include="OverLoad\JsonNetResult.cs" />
     <Content Include="plugins\bootstrap-3.3.7\css\bootstrap-theme.css" />
     <Content Include="plugins\bootstrap-3.3.7\css\bootstrap-theme.min.css" />
     <Content Include="plugins\bootstrap-3.3.7\css\bootstrap.css" />
@@ -202,6 +204,8 @@
     <Content Include="Log4Net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Home\RecvAuth.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -213,7 +217,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Login\" />
-    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL_9H\BLL_9H.csproj">

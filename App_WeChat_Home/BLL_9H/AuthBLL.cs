@@ -169,7 +169,8 @@ namespace BLL_9H
                     ari_resp.Authorizer_Info.Business_Info.Open_Card,
                     ari_resp.Authorizer_Info.Business_Info.Open_Store,
                     ari_resp.Authorizer_Info.IDC,
-                    ari_resp.Authorizer_Info.Principal_Name);
+                    ari_resp.Authorizer_Info.Principal_Name,
+                    DateTime.Now);
 
                 return new RESTfulModel() { Code = (int)CodeEnum.成功, Msg = string.Format(codeMsgDAL.GetByCode((int)CodeEnum.失败), "授权成功") };
             }
@@ -191,7 +192,8 @@ namespace BLL_9H
                     ari_resp.Authorizer_Info.Business_Info.Open_Card,
                     ari_resp.Authorizer_Info.Business_Info.Open_Store,
                     ari_resp.Authorizer_Info.IDC,
-                    ari_resp.Authorizer_Info.Principal_Name);
+                    ari_resp.Authorizer_Info.Principal_Name, 
+                    DateTime.Now);
 
                 return new RESTfulModel() { Code = (int)CodeEnum.成功, Msg = string.Format(codeMsgDAL.GetByCode((int)CodeEnum.失败), "授权成功") };
             }

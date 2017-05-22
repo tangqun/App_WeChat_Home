@@ -13,7 +13,7 @@ namespace DAL_9H
 {
     public class AuthorizerInfoDAL : IAuthorizerInfoDAL
     {
-        public int Insert(int user_id, string authorizer_appid, string nick_name, string head_img, int service_type_info, int verify_type_info, string user_name, string alias, string qrcode_url, int open_pay, int open_shake, int open_scan, int open_card, int open_store, int idc, string principal_name)
+        public int Insert(int user_id, string authorizer_appid, string nick_name, string head_img, int service_type_info, int verify_type_info, string user_name, string alias, string qrcode_url, int open_pay, int open_shake, int open_scan, int open_card, int open_store, int idc, string principal_name, DateTime dt)
         {
             string sql =
                         @"INSERT INTO `authorizer_info`
@@ -51,8 +51,8 @@ namespace DAL_9H
                                 @open_store,
                                 @idc,
                                 @principal_name,
-                                NOW(),
-                                NOW());
+                                @create_time,
+                                @update_time);
                         SELECT @@IDENTITY;";
             MySqlParameter[] parameters = { 
                                               new MySqlParameter("@user_id", user_id),
@@ -70,12 +70,14 @@ namespace DAL_9H
                                               new MySqlParameter("@open_card", open_card),
                                               new MySqlParameter("@open_store", open_store),
                                               new MySqlParameter("@idc", idc),
-                                              new MySqlParameter("@principal_name", principal_name)
+                                              new MySqlParameter("@principal_name", principal_name),
+                                              new MySqlParameter("@create_time", dt),
+                                              new MySqlParameter("@update_time", dt)
                                           };
             return MySqlHelper.ExecuteScalar(ConfigHelper.ConnStr, sql, parameters).ToInt();
         }
 
-        public bool Update(string authorizer_appid, string nick_name, string head_img, int service_type_info, int verify_type_info, string alias, string qrcode_url, int open_pay, int open_shake, int open_scan, int open_card, int open_store, int idc, string principal_name)
+        public bool Update(string authorizer_appid, string nick_name, string head_img, int service_type_info, int verify_type_info, string alias, string qrcode_url, int open_pay, int open_shake, int open_scan, int open_card, int open_store, int idc, string principal_name, DateTime dt)
         {
             string sql =
                         @"UPDATE `authorizer_info`
@@ -92,7 +94,7 @@ namespace DAL_9H
                             `open_store` = @open_store,
                             `idc` = @idc,
                             `principal_name` = @principal_name,
-                            `update_time` = NOW()
+                            `update_time` = @update_time
                         WHERE `authorizer_appid` = @authorizer_appid;";
             MySqlParameter[] parameters = { 
                                               new MySqlParameter("@nick_name", nick_name),
@@ -108,7 +110,8 @@ namespace DAL_9H
                                               new MySqlParameter("@open_store", open_store),
                                               new MySqlParameter("@idc", idc),
                                               new MySqlParameter("@principal_name", principal_name),
-                                              new MySqlParameter("@authorizer_appid", authorizer_appid)
+                                              new MySqlParameter("@authorizer_appid", authorizer_appid),
+                                              new MySqlParameter("@update_time", dt)
                                           };
             return MySqlHelper.ExecuteNonQuery(ConfigHelper.ConnStr, sql, parameters) > 0;
         }

@@ -1,4 +1,5 @@
 ﻿using Model_9H;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,11 @@ namespace Web_9H.Controllers
         // GET: Test
         public ActionResult Index()
         {
-            return Json(new RESTfulModel() { Code = 0, Msg = "成功" }, JsonRequestBehavior.AllowGet);
+            //string json = JsonConvert.SerializeObject(new RESTfulModel() { Code = 1, Msg = "失败" });
+
+            //return Content(json, "application/json");
+
+            return View(new RESTfulModel() { Code = 1, Msg = "失败" });
         }
     }
 }
