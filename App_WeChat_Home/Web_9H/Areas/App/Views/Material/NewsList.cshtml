@@ -1,0 +1,19 @@
+﻿@model PagedList<Model_9H.Material>
+@{
+    ViewBag.Title = "图文消息";
+    Layout = "~/Areas/App/Views/Shared/_Layout.cshtml";
+}
+
+@using (Ajax.BeginForm("AjaxSearchGet", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "articles", HttpMethod = "Get", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" } }))
+{
+    <span>标题：</span><input type="text" name="title" id="title" style="width:120px" />
+    <input type="submit" value="搜索(S)" accesskey="S" />
+}
+<div id="articles">
+    @Html.Partial("NewsListPartial", Model)
+</div>
+@section Scripts {
+    @{Html.RegisterMvcPagerScriptResource();}
+    <script type="text/javascript" src="../../../../Scripts/jquery.unobtrusive-ajax.js"></script>
+}
+

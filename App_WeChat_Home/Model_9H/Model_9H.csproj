@@ -61,6 +61,12 @@
     <Compile Include="WeChat\Business_Info.cs" />
     <Compile Include="WeChat\Funcscope_Category.cs" />
     <Compile Include="WeChat\Func_Info.cs" />
+    <Compile Include="WeChat\Material.cs" />
+    <Compile Include="WeChat\MaterialListGetReq.cs" />
+    <Compile Include="WeChat\MaterialCountGetResp.cs" />
+    <Compile Include="WeChat\MaterialListGetResp.cs" />
+    <Compile Include="WeChat\MaterialNewsType.cs" />
+    <Compile Include="WeChat\MaterialNewsTypeInfo.cs" />
     <Compile Include="WeChat\Pre_Auth_Code_Req.cs" />
     <Compile Include="WeChat\Pre_Auth_Code_Resp.cs" />
     <Compile Include="WeChat\Service_Type_Info.cs" />

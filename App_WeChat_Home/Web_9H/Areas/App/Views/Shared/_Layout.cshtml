@@ -11,18 +11,18 @@
     <!-- Font Awesome -->
     <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet">
     <!-- Ionicons -->
-    <link href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.css" rel="stylesheet">    
     <!-- Bootstrap 3.3.7 -->
     @*<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">*@
-    <link href="../../plugins/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../../../plugins/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" />
     <!-- Theme style -->
     <link href="../../css/AdminLTE.css" rel="stylesheet">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
-    <link href="../../css/skins/skin-blue-light.css" rel="stylesheet">
-    <link href="../../css/fix.css" rel="stylesheet" />
+    <link href="../../../../css/skins/skin-blue-light.css" rel="stylesheet">
+    <link href="../../../../css/fix.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -211,9 +211,9 @@
             <section class="sidebar">
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu">
-                    <li class="header">基础管理</li>
+                    <li class="header">管理</li>
                     <!-- Optionally, you can add icons to the links -->
-                    <li class="active"><a href="#"><i class="fa fa-link"></i> <span>我的公众号</span></a></li>
+                    <li class="active"><a href="#"><i class="fa fa-link"></i> <span>素材管理</span></a></li>
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>
@@ -330,16 +330,17 @@
     <!-- REQUIRED JS SCRIPTS -->
     <!-- jQuery 2.2.4 -->
     @*<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>*@
-    <script src="../../plugins/jquery-2.2.4/jquery.js"></script>
+    <script src="../../../../plugins/jquery-2.2.4/jquery.js"></script>
     <!-- Bootstrap 3.3.7 -->
     @*<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>*@
-    <script src="../../plugins/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <script src="../../../../plugins/bootstrap-3.3.7/js/bootstrap.js"></script>
     <!-- AdminLTE App -->
-    <script src="../../js/app.js"></script>
+    <script src="../../../../js/app.js"></script>
 
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. -->
+    @RenderSection("Scripts", false)
 </body>
 </html>

@@ -68,6 +68,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Webdiyer.MvcPager, Version=3.0.2015.802, Culture=neutral, PublicKeyToken=f6872c5a09aed72c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Webdiyer.MvcPager.3.0.1.1\lib\Webdiyer.MvcPager.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -174,10 +178,18 @@
     <Content Include="plugins\bootstrap-3.3.7\js\npm.js" />
     <Content Include="plugins\jquery-2.2.4\jquery.js" />
     <Content Include="plugins\jquery-2.2.4\jquery.min.js" />
+    <None Include="Scripts\jquery-1.8.0.intellisense.js" />
+    <Content Include="Scripts\jquery-1.8.0.js" />
+    <Content Include="Scripts\jquery-1.8.0.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\App\AppAreaRegistration.cs" />
+    <Compile Include="Areas\App\Controllers\HomeController.cs" />
+    <Compile Include="Areas\App\Controllers\MaterialController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -206,6 +218,11 @@
     </Content>
     <Content Include="Views\Home\RecvAuth.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Areas\App\Views\web.config" />
+    <Content Include="Areas\App\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\App\Views\Home\Index.cshtml" />
+    <Content Include="Areas\App\Views\Material\NewsList.cshtml" />
+    <Content Include="Areas\App\Views\Material\NewsListPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -215,6 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\App\Models\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Login\" />
   </ItemGroup>
