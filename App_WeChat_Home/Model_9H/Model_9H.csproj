@@ -53,7 +53,7 @@
     <Compile Include="RESTfulModel.cs" />
     <Compile Include="UserModel.cs" />
     <Compile Include="WeChat\Authorization_Info.cs" />
-    <Compile Include="WeChat\Authorization_Info_Req.cs" />
+    <Compile Include="WeChat\AuthorizationInfoGetReq.cs" />
     <Compile Include="WeChat\Authorization_Info_Resp.cs" />
     <Compile Include="WeChat\Authorizer_Info.cs" />
     <Compile Include="WeChat\Authorizer_Info_Req.cs" />

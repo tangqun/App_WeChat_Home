@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Model_9H
 {
-    public class Authorization_Info_Req
+    public class AuthorizationInfoGetReq
     {
         [JsonProperty("component_appid")]
-        public string Component_AppId { get; set; }
+        public string ComponentAppId { get; set; }
         [JsonProperty("authorization_code")]
-        public string Authorization_Code { get; set; }
+        public string AuthorizationCode { get; set; }
     }
 }

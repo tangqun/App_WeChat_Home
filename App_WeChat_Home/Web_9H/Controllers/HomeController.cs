@@ -20,7 +20,7 @@ namespace Web_9H.Controllers
 
         public ActionResult GoAuth()
         {
-            string component_appid = ConfigHelper.Component_AppId;
+            string component_appid = ConfigHelper.ComponentAppId;
             string pre_auth_code = authBLL.GetPreAuthCode();
             string redirect_uri = ConfigHelper.Domain + "home/recvauth";
             return Redirect("https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=" + component_appid + "&pre_auth_code=" + pre_auth_code + "&redirect_uri=" + redirect_uri);

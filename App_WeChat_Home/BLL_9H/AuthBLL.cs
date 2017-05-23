@@ -24,7 +24,7 @@ namespace BLL_9H
         {
             try
             {
-                string componentAppId = ConfigHelper.Component_AppId;
+                string componentAppId = ConfigHelper.ComponentAppId;
 
                 Pre_Auth_Code_Req pac_req = new Pre_Auth_Code_Req();
                 pac_req.Component_AppId = componentAppId;
@@ -53,18 +53,18 @@ namespace BLL_9H
             }
         }
 
-        public RESTfulModel RecvAuth(string auth_code, int expires_in, int user_id)
+        public RESTfulModel RecvAuth(string authCode, int expiresIn, int userID)
         {
             try
             {
-                string component_appid = ConfigHelper.Component_AppId;
+                string component_appid = ConfigHelper.ComponentAppId;
                 //string appSecret = ConfigHelper.AppSecret;
                 //string encodingAESKey = ConfigHelper.EncodingAESKey;
 
                 // 4、使用授权码换取公众号的接口调用凭据和授权信息
-                Authorization_Info_Req ai_req = new Authorization_Info_Req();
-                ai_req.Component_AppId = component_appid;
-                ai_req.Authorization_Code = auth_code;
+                AuthorizationInfoGetReq req = new AuthorizationInfoGetReq();
+                req.ComponentAppId = component_appid;
+                req.AuthorizationCode = authCode;
                 string requestBody_4 = JsonConvert.SerializeObject(ai_req);
 
                 LogHelper.Info("4、使用授权码换取公众号的接口调用凭据和授权信息" + "\r\n\r\n" + requestBody_4);

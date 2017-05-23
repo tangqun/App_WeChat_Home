@@ -13,7 +13,7 @@ namespace DAL_9H
     {
         public string Get(string appid)
         {
-            string url_access_token = ConfigHelper.Domain_Token + "api/access_token/get?authorizer_appid=" + appid;
+            string url_access_token = ConfigHelper.DomainToken + "api/access_token/get?authorizer_appid=" + appid;
 
             LogHelper.Info("url_access_token: " + url_access_token);
 
