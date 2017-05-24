@@ -13,7 +13,7 @@ namespace DAL_9H
 {
     public class FuncInfoDAL : IFuncInfoDAL
     {
-        public List<FuncInfoModel> GetList(string authorizer_appid)
+        public List<FuncInfoModel> GetList(string authorizerAppID)
         {
             string sql =
                         @"SELECT
@@ -22,11 +22,11 @@ namespace DAL_9H
                             `funcscope_category_id`
                         FROM `func_info`
                         WHERE `authorizer_appid` = @authorizer_appid;";
-            DataTable dt = MySqlHelper.ExecuteDataset(ConfigHelper.ConnStr, sql, new MySqlParameter("@authorizer_appid", authorizer_appid)).Tables[0];
+            DataTable dt = MySqlHelper.ExecuteDataset(ConfigHelper.ConnStr, sql, new MySqlParameter("@authorizer_appid", authorizerAppID)).Tables[0];
             return EntityListToModelList(dt);
         }
 
-        public int Insert(string authorizer_appid, int funcscope_category_id)
+        public int Insert(string authorizerAppID, int funcscopeCategoryID)
         {
             string sql =
                         @"INSERT INTO `func_info`
@@ -36,19 +36,19 @@ namespace DAL_9H
                                 @funcscope_category_id);
                         SELECT @@IDENTITY;";
             MySqlParameter[] parameters = {
-                                              new MySqlParameter("@authorizer_appid", authorizer_appid),
-                                              new MySqlParameter("@funcscope_category_id", funcscope_category_id)
+                                              new MySqlParameter("@authorizer_appid", authorizerAppID),
+                                              new MySqlParameter("@funcscope_category_id", funcscopeCategoryID)
                                           };
             return MySqlHelper.ExecuteScalar(ConfigHelper.ConnStr, sql, parameters).ToInt();
         }
 
-        public bool Delete(string authorizer_appid)
+        public bool Delete(string authorizerAppID)
         {
             string sql =
                         @"DELETE
                         FROM `func_info`
                         WHERE `authorizer_appid` = @authorizer_appid;";
-            return MySqlHelper.ExecuteNonQuery(ConfigHelper.ConnStr, sql, new MySqlParameter("@authorizer_appid", authorizer_appid)) > 0;
+            return MySqlHelper.ExecuteNonQuery(ConfigHelper.ConnStr, sql, new MySqlParameter("@authorizer_appid", authorizerAppID)) > 0;
         }
 
         private List<FuncInfoModel> EntityListToModelList(DataTable dt)
@@ -69,9 +69,9 @@ namespace DAL_9H
             if (dr != null)
             {
                 FuncInfoModel model = new FuncInfoModel();
-                model.Id = dr["id"].ToInt();
-                model.Authorizer_AppId = dr["authorizer_appid"].ToString();
-                model.Funcscope_Category_Id = dr["funcscope_category_id"].ToInt();
+                model.ID = dr["id"].ToInt();
+                model.AuthorizerAppID = dr["authorizer_appid"].ToString();
+                model.FuncscopeCategoryID = dr["funcscope_category_id"].ToInt();
                 return model;
             }
             return null;

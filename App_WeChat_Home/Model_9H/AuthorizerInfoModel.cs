@@ -8,32 +8,32 @@ namespace Model_9H
 {
     public class AuthorizerInfoModel
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         // 不直接让 id 和 authorizer_appid 直接对外
-        public int User_Id { get; set; }
+        public int UserID { get; set; }
 
-        public string Authorizer_AppId { get; set; }
-        public string Nick_Name { get; set; }
-        public string Head_Img { get; set; }
-        public int Service_Type_Info { get; set; }
-        public int Verify_Type_Info { get; set; }
-        public string User_Name { get; set; }
+        public string AuthorizerAppID { get; set; }
+        public string NickName { get; set; }
+        public string HeadImg { get; set; }
+        public int ServiceTypeInfo { get; set; }
+        public int VerifyTypeInfo { get; set; }
+        public string UserName { get; set; }
         public string Alias { get; set; }
 
         // 二维码
-        public string Qrcode_Url { get; set; }
+        public string QrcodeUrl { get; set; }
 
         // business_info
-        public int Open_Pay { get; set; }
-        public int Open_Shake { get; set; }
-        public int Open_Scan { get; set; }
-        public int Open_Card { get; set; }
-        public int Open_Store { get; set; }
+        public int OpenPay { get; set; }
+        public int OpenShake { get; set; }
+        public int OpenScan { get; set; }
+        public int OpenCard { get; set; }
+        public int OpenStore { get; set; }
 
         public int IDC { get; set; }
-        public string Principal_Name { get; set; }
+        public string PrincipalName { get; set; }
 
-        public DateTime Create_Time { get; set; }
-        public DateTime Update_Time { get; set; }
+        public DateTime CreateTime { get; set; }
+        public DateTime UpdateTime { get; set; }
     }
 }

@@ -11,15 +11,14 @@ namespace DAL_9H
 {
     public class AccessTokenDAL : IAccessTokenDAL
     {
-        public string Get(string appid)
+        public string Get(string authorizerAppID)
         {
-            string url_access_token = ConfigHelper.DomainToken + "api/access_token/get?authorizer_appid=" + appid;
+            string url = ConfigHelper.DomainToken + "api/accesstoken/get?authorizerappid=" + authorizerAppID;
 
-            LogHelper.Info("url_access_token: " + url_access_token);
+            string responseBody = HttpHelper.Get(url);
+            LogHelper.Info("获取access_token" + "\r\n\r\nresponseBody: " + responseBody);
 
-            string resp_access_token = HttpHelper.Get(url_access_token);
-
-            RESTfulModel r = JsonConvert.DeserializeObject<RESTfulModel>(resp_access_token);
+            RESTfulModel r = JsonConvert.DeserializeObject<RESTfulModel>(responseBody);
 
             return r.Data.ToString();
         }

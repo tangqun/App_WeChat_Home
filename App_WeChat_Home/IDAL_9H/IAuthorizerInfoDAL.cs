@@ -9,10 +9,10 @@ namespace IDAL_9H
 {
     public interface IAuthorizerInfoDAL
     {
-        int Insert(int user_id, string authorizer_appid, string nick_name, string head_img, int service_type_info, int verify_type_info, string user_name, string alias, string qrcode_url, int open_pay, int open_shake, int open_scan, int open_card, int open_store, int idc, string principal_name, DateTime dt);
-        bool Update(string authorizer_appid, string nick_name, string head_img, int service_type_info, int verify_type_info, string alias, string qrcode_url, int open_pay, int open_shake, int open_scan, int open_card, int open_store, int idc, string principal_name, DateTime dt);
-        AuthorizerInfoModel GetModel(string authorizer_appid);
-        List<AuthorizerInfoModel> GetList(int user_id);
+        int Insert(int userID, string authorizerAppID, string nickName, string headImg, int serviceTypeInfo, int verifyTypeInfo, string user_name, string alias, string qrcodeUrl, int openPay, int openShake, int openScan, int openCard, int openStore, int idc, string principalName, DateTime createTime);
+        bool Update(string authorizerAppID, string nickName, string headImg, int serviceTypeInfo, int verifyTypeInfo, string alias, string qrcodeUrl, int openPay, int openShake, int openScan, int openCard, int openStore, int idc, string principalName, DateTime updateTime);
+        AuthorizerInfoModel GetModel(string authorizerAppID);
+        List<AuthorizerInfoModel> GetList(int userID);
         List<AuthorizerInfoModel> GetList();
     }
 }

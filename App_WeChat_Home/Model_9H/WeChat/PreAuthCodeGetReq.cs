@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace Model_9H
 {
-    public class Authorizer_Info_Req
+    public class PreAuthCodeGetReq
     {
         [JsonProperty("component_appid")]
-        public string Component_AppId { get; set; }
-        [JsonProperty("authorizer_appid")]
-        public string Authorizer_AppId { get; set; }
+        public string ComponentAppId { get; set; }
     }
 }

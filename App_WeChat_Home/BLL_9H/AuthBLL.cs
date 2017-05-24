@@ -26,22 +26,22 @@ namespace BLL_9H
             {
                 string componentAppId = ConfigHelper.ComponentAppId;
 
-                Pre_Auth_Code_Req pac_req = new Pre_Auth_Code_Req();
-                pac_req.Component_AppId = componentAppId;
-                string requestBody_3 = JsonConvert.SerializeObject(pac_req);
+                PreAuthCodeGetReq req = new PreAuthCodeGetReq();
+                req.ComponentAppId = componentAppId;
+                string requestBody = JsonConvert.SerializeObject(req);
 
-                LogHelper.Info("3、获取预授权码pre_auth_code" + "\r\n\r\n" + requestBody_3);
+                LogHelper.Info("3、获取预授权码pre_auth_code" + "\r\n\r\nrequestBody: " + requestBody);
 
-                string responseBody_3 = HttpHelper.Post("https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token=" + componentAccessTokenDAL.Get(), requestBody_3);
+                string responseBody = HttpHelper.Post("https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token=" + componentAccessTokenDAL.Get(), requestBody);
 
-                LogHelper.Info("3、获取预授权码pre_auth_code" + "\r\n\r\n" + requestBody_3 + "\r\n\r\n" + responseBody_3);
+                LogHelper.Info("3、获取预授权码pre_auth_code" + "\r\n\r\nrequestBody: " + requestBody + "\r\n\r\nresponseBody: " + responseBody);
 
-                if (!string.IsNullOrEmpty(responseBody_3))
+                if (!string.IsNullOrEmpty(responseBody))
                 {
-                    Pre_Auth_Code_Resp pac_resp = JsonConvert.DeserializeObject<Pre_Auth_Code_Resp>(responseBody_3);
-                    if (pac_resp != null)
+                    PreAuthCodeGetResp resp = JsonConvert.DeserializeObject<PreAuthCodeGetResp>(responseBody);
+                    if (resp != null)
                     {
-                        return pac_resp.Pre_Auth_Code;
+                        return resp.PreAuthCode;
                     }
                 }
                 return "";
@@ -57,70 +57,68 @@ namespace BLL_9H
         {
             try
             {
-                string component_appid = ConfigHelper.ComponentAppId;
-                //string appSecret = ConfigHelper.AppSecret;
-                //string encodingAESKey = ConfigHelper.EncodingAESKey;
+                string componentAppID = ConfigHelper.ComponentAppId;
 
                 // 4、使用授权码换取公众号的接口调用凭据和授权信息
                 AuthorizationInfoGetReq req = new AuthorizationInfoGetReq();
-                req.ComponentAppId = component_appid;
+                req.ComponentAppId = componentAppID;
                 req.AuthorizationCode = authCode;
-                string requestBody_4 = JsonConvert.SerializeObject(ai_req);
+                string requestBody = JsonConvert.SerializeObject(req);
 
-                LogHelper.Info("4、使用授权码换取公众号的接口调用凭据和授权信息" + "\r\n\r\n" + requestBody_4);
+                LogHelper.Info("4、使用授权码换取公众号的接口调用凭据和授权信息" + "\r\n\r\nrequestBody: " + requestBody);
 
-                string component_access_token = componentAccessTokenDAL.Get();
+                string componentAccessToken = componentAccessTokenDAL.Get();
 
-                string responseBody_4 = HttpHelper.Post("https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token=" + component_access_token, requestBody_4);
+                string responseBody = HttpHelper.Post("https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token=" + componentAccessTokenDAL.Get(), requestBody);
 
-                LogHelper.Info("4、使用授权码换取公众号的接口调用凭据和授权信息" + "\r\n\r\n" + requestBody_4 + "\r\n\r\n" + responseBody_4);
+                LogHelper.Info("4、使用授权码换取公众号的接口调用凭据和授权信息" + "\r\n\r\nrequestBody: " + requestBody + "\r\n\r\nresponseBody: " + responseBody);
 
-                Authorization_Info_Resp ai_resp = JsonConvert.DeserializeObject<Authorization_Info_Resp>(responseBody_4);
+                AuthorizationInfoGetResp resp = JsonConvert.DeserializeObject<AuthorizationInfoGetResp>(responseBody);
                 #region 授权信息存数据库
                 // 授权信息存数据库
-                AuthorizationInfoModel authorizationInfoModel = authorizationInfoDAL.GetModel(ai_resp.Authorization_Info.Authorizer_AppId);
+                AuthorizationInfoModel authorizationInfoModel = authorizationInfoDAL.GetModel(resp.AuthorizationInfo.AuthorizerAppID);
                 if (authorizationInfoModel != null)
                 {
                     // 更新
                     bool res = authorizationInfoDAL.Update(
-                        ai_resp.Authorization_Info.Authorizer_AppId,
-                        authorizationInfoModel.Authorizer_Access_Token,// 当前的置为旧的，用于消息延时
-                        ai_resp.Authorization_Info.Authorizer_Access_Token,
-                        ai_resp.Authorization_Info.Expires_In,
-                        ai_resp.Authorization_Info.Authorizer_Refresh_Token,
+                        resp.AuthorizationInfo.AuthorizerAppID,
+                        authorizationInfoModel.AuthorizerAccessToken,// 当前的置为旧的，用于消息延时
+                        resp.AuthorizationInfo.AuthorizerAccessToken,
+                        resp.AuthorizationInfo.ExpiresIn,
+                        resp.AuthorizationInfo.AuthorizerRefreshToken,
                         DateTime.Now);
 
                     // 删除权限
-                    funcInfoDAL.Delete(ai_resp.Authorization_Info.Authorizer_AppId);
+                    funcInfoDAL.Delete(resp.AuthorizationInfo.AuthorizerAppID);
                     // 插入权限，不存在空集合
-                    List<int> authority_wechat_IdList = ai_resp.Authorization_Info.Func_Info.Select(o => o.Funcscope_Category.Id).ToList();
-                    foreach (var authority_wechat_Id in authority_wechat_IdList)
+                    List<int> funcscopeCategoryIdList = resp.AuthorizationInfo.FuncInfo.Select(o => o.FuncscopeCategory.ID).ToList();
+                    foreach (var funcscopeCategoryId in funcscopeCategoryIdList)
                     {
-                        funcInfoDAL.Insert(ai_resp.Authorization_Info.Authorizer_AppId, authority_wechat_Id);
+                        funcInfoDAL.Insert(resp.AuthorizationInfo.AuthorizerAppID, funcscopeCategoryId);
                     }
 
-                    return Authorize(component_appid, ai_resp.Authorization_Info.Authorizer_AppId, component_access_token, user_id);
+                    return Authorize(componentAppID, resp.AuthorizationInfo.AuthorizerAppID, componentAccessToken, userID);
                 }
                 else
                 {
                     // 插入
                     int id = authorizationInfoDAL.Insert(
-                        ai_resp.Authorization_Info.Authorizer_AppId,
-                        ai_resp.Authorization_Info.Authorizer_Access_Token,
-                        ai_resp.Authorization_Info.Authorizer_Access_Token,
-                        ai_resp.Authorization_Info.Expires_In,
-                        ai_resp.Authorization_Info.Authorizer_Refresh_Token,
+                        resp.AuthorizationInfo.AuthorizerAppID,
+                        resp.AuthorizationInfo.AuthorizerAccessToken,
+                        resp.AuthorizationInfo.AuthorizerAccessToken,
+                        resp.AuthorizationInfo.ExpiresIn,
+                        resp.AuthorizationInfo.AuthorizerRefreshToken,
                         DateTime.Now);
 
                     // 插入权限
-                    List<int> authority_wechat_IdList = ai_resp.Authorization_Info.Func_Info.Select(o => o.Funcscope_Category.Id).ToList();
-                    foreach (var authority_wechat_Id in authority_wechat_IdList)
+                    List<int> funcscopeCategoryIdList = resp.AuthorizationInfo.FuncInfo.Select(o => o.FuncscopeCategory.ID).ToList();
+                    foreach (var funcscopeCategoryId in funcscopeCategoryIdList)
                     {
-                        funcInfoDAL.Insert(ai_resp.Authorization_Info.Authorizer_AppId, authority_wechat_Id);
+                        funcInfoDAL.Insert(resp.AuthorizationInfo.AuthorizerAppID, funcscopeCategoryId);
                     }
 
                     // 授权成功
-                    return Authorize(component_appid, ai_resp.Authorization_Info.Authorizer_AppId, component_access_token, user_id);
+                    return Authorize(componentAppID, resp.AuthorizationInfo.AuthorizerAppID, componentAccessToken, userID);
                 }
                 #endregion
             }
@@ -131,71 +129,71 @@ namespace BLL_9H
             }
         }
 
-        private RESTfulModel Authorize(string component_appid, string authorizer_appid, string component_access_token, int user_id)
+        private RESTfulModel Authorize(string componentAppID, string authorizerAppID, string componentAccessToken, int userID)
         {
             // 二次授权成功
-            Authorizer_Info_Req ari_req = new Authorizer_Info_Req();
-            ari_req.Component_AppId = component_appid;
-            ari_req.Authorizer_AppId = authorizer_appid;
-            string requestBody_6 = JsonConvert.SerializeObject(ari_req);
+            AuthorizerInfoGetReq req = new AuthorizerInfoGetReq();
+            req.ComponentAppID = componentAppID;
+            req.AuthorizerAppID = authorizerAppID;
+            string requestBody = JsonConvert.SerializeObject(req);
 
-            LogHelper.Info("6、获取授权方的公众号帐号基本信息" + "\r\n\r\n" + requestBody_6);
+            LogHelper.Info("6、获取授权方的公众号帐号基本信息" + "\r\n\r\nrequestBody: " + requestBody);
 
-            string responseBody_6 = HttpHelper.Post("https://api.weixin.qq.com/cgi-bin/component/api_get_authorizer_info?component_access_token=" + component_access_token, requestBody_6);
+            string responseBody = HttpHelper.Post("https://api.weixin.qq.com/cgi-bin/component/api_get_authorizer_info?component_access_token=" + componentAccessToken, requestBody);
 
-            LogHelper.Info("6、获取授权方的公众号帐号基本信息" + "\r\n\r\n" + requestBody_6 + "\r\n\r\n" + responseBody_6);
+            LogHelper.Info("6、获取授权方的公众号帐号基本信息" + "\r\n\r\nrequestBody: " + requestBody + "\r\n\r\nresponseBody: " + responseBody);
 
-            Authorizer_Info_Resp ari_resp = JsonConvert.DeserializeObject<Authorizer_Info_Resp>(responseBody_6);
+            AuthorizerInfoGetResp resp = JsonConvert.DeserializeObject<AuthorizerInfoGetResp>(responseBody);
 
-            AuthorizerInfoModel authorizerInfoModel = authorizerInfoDAL.GetModel(authorizer_appid);
+            AuthorizerInfoModel authorizerInfoModel = authorizerInfoDAL.GetModel(authorizerAppID);
             if (authorizerInfoModel != null)
             {
-                if (user_id != authorizerInfoModel.User_Id)
+                if (userID != authorizerInfoModel.UserID)
                 {
                     return new RESTfulModel() { Code = (int)CodeEnum.失败, Msg = string.Format(codeMsgDAL.GetByCode((int)CodeEnum.失败), "公众帐号已授权绑定，如有帐号争执，请联系客服") };
                 }
 
                 authorizerInfoDAL.Update(
-                    authorizer_appid,
-                    ari_resp.Authorizer_Info.Nick_Name,
-                    ari_resp.Authorizer_Info.Head_Img,
-                    ari_resp.Authorizer_Info.Service_Type_Info.Id,
-                    ari_resp.Authorizer_Info.Verify_Type_Info.Id,
-                    ari_resp.Authorizer_Info.Alias,
-                    ari_resp.Authorizer_Info.Qrcode_Url,
-                    ari_resp.Authorizer_Info.Business_Info.Open_Pay,
-                    ari_resp.Authorizer_Info.Business_Info.Open_Shake,
-                    ari_resp.Authorizer_Info.Business_Info.Open_Scan,
-                    ari_resp.Authorizer_Info.Business_Info.Open_Card,
-                    ari_resp.Authorizer_Info.Business_Info.Open_Store,
-                    ari_resp.Authorizer_Info.IDC,
-                    ari_resp.Authorizer_Info.Principal_Name,
+                    authorizerAppID,
+                    resp.AuthorizerInfo.NickName,
+                    resp.AuthorizerInfo.HeadImg,
+                    resp.AuthorizerInfo.ServiceTypeInfo.ID,
+                    resp.AuthorizerInfo.VerifyTypeInfo.ID,
+                    resp.AuthorizerInfo.Alias,
+                    resp.AuthorizerInfo.QrcodeUrl,
+                    resp.AuthorizerInfo.BusinessInfo.OpenPay,
+                    resp.AuthorizerInfo.BusinessInfo.OpenShake,
+                    resp.AuthorizerInfo.BusinessInfo.OpenScan,
+                    resp.AuthorizerInfo.BusinessInfo.OpenCard,
+                    resp.AuthorizerInfo.BusinessInfo.OpenStore,
+                    resp.AuthorizerInfo.IDC,
+                    resp.AuthorizerInfo.PrincipalName,
                     DateTime.Now);
 
-                return new RESTfulModel() { Code = (int)CodeEnum.成功, Msg = string.Format(codeMsgDAL.GetByCode((int)CodeEnum.失败), "授权成功") };
+                return new RESTfulModel() { Code = (int)CodeEnum.成功, Msg = string.Format(codeMsgDAL.GetByCode((int)CodeEnum.成功), "授权成功") };
             }
             else
             {
                 authorizerInfoDAL.Insert(
-                    user_id,
-                    authorizer_appid,
-                    ari_resp.Authorizer_Info.Nick_Name,
-                    ari_resp.Authorizer_Info.Head_Img,
-                    ari_resp.Authorizer_Info.Service_Type_Info.Id,
-                    ari_resp.Authorizer_Info.Verify_Type_Info.Id,
-                    ari_resp.Authorizer_Info.User_Name,
-                    ari_resp.Authorizer_Info.Alias,
-                    ari_resp.Authorizer_Info.Qrcode_Url,
-                    ari_resp.Authorizer_Info.Business_Info.Open_Pay,
-                    ari_resp.Authorizer_Info.Business_Info.Open_Shake,
-                    ari_resp.Authorizer_Info.Business_Info.Open_Scan,
-                    ari_resp.Authorizer_Info.Business_Info.Open_Card,
-                    ari_resp.Authorizer_Info.Business_Info.Open_Store,
-                    ari_resp.Authorizer_Info.IDC,
-                    ari_resp.Authorizer_Info.Principal_Name, 
+                    userID,
+                    authorizerAppID,
+                    resp.AuthorizerInfo.NickName,
+                    resp.AuthorizerInfo.HeadImg,
+                    resp.AuthorizerInfo.ServiceTypeInfo.ID,
+                    resp.AuthorizerInfo.VerifyTypeInfo.ID,
+                    resp.AuthorizerInfo.UserName,
+                    resp.AuthorizerInfo.Alias,
+                    resp.AuthorizerInfo.QrcodeUrl,
+                    resp.AuthorizerInfo.BusinessInfo.OpenPay,
+                    resp.AuthorizerInfo.BusinessInfo.OpenShake,
+                    resp.AuthorizerInfo.BusinessInfo.OpenScan,
+                    resp.AuthorizerInfo.BusinessInfo.OpenCard,
+                    resp.AuthorizerInfo.BusinessInfo.OpenStore,
+                    resp.AuthorizerInfo.IDC,
+                    resp.AuthorizerInfo.PrincipalName, 
                     DateTime.Now);
 
-                return new RESTfulModel() { Code = (int)CodeEnum.成功, Msg = string.Format(codeMsgDAL.GetByCode((int)CodeEnum.失败), "授权成功") };
+                return new RESTfulModel() { Code = (int)CodeEnum.成功, Msg = string.Format(codeMsgDAL.GetByCode((int)CodeEnum.成功), "授权成功") };
             }
         }
     }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Model_9H
 {
-    public class Pre_Auth_Code_Req
+    public class VerifyTypeInfo
     {
-        [JsonProperty("component_appid")]
-        public string Component_AppId { get; set; }
+        [JsonProperty("id")]
+        public int ID { get; set; }
     }
 }

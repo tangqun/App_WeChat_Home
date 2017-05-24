@@ -13,7 +13,7 @@ namespace DAL_9H
 {
     public class AuthorizerInfoDAL : IAuthorizerInfoDAL
     {
-        public int Insert(int user_id, string authorizer_appid, string nick_name, string head_img, int service_type_info, int verify_type_info, string user_name, string alias, string qrcode_url, int open_pay, int open_shake, int open_scan, int open_card, int open_store, int idc, string principal_name, DateTime dt)
+        public int Insert(int userID, string authorizerAppID, string nickName, string headImg, int serviceTypeInfo, int verifyTypeInfo, string user_name, string alias, string qrcodeUrl, int openPay, int openShake, int openScan, int openCard, int openStore, int idc, string principalName, DateTime createTime)
         {
             string sql =
                         @"INSERT INTO `authorizer_info`
@@ -55,29 +55,29 @@ namespace DAL_9H
                                 @update_time);
                         SELECT @@IDENTITY;";
             MySqlParameter[] parameters = { 
-                                              new MySqlParameter("@user_id", user_id),
-                                              new MySqlParameter("@authorizer_appid", authorizer_appid),
-                                              new MySqlParameter("@nick_name", nick_name),
-                                              new MySqlParameter("@head_img", head_img),
-                                              new MySqlParameter("@service_type_info", service_type_info),
-                                              new MySqlParameter("@verify_type_info", verify_type_info),
+                                              new MySqlParameter("@user_id", userID),
+                                              new MySqlParameter("@authorizer_appid", authorizerAppID),
+                                              new MySqlParameter("@nick_name", nickName),
+                                              new MySqlParameter("@head_img", headImg),
+                                              new MySqlParameter("@service_type_info", serviceTypeInfo),
+                                              new MySqlParameter("@verify_type_info", verifyTypeInfo),
                                               new MySqlParameter("@user_name", user_name),
                                               new MySqlParameter("@alias", alias),
-                                              new MySqlParameter("@qrcode_url", qrcode_url),
-                                              new MySqlParameter("@open_pay", open_pay),
-                                              new MySqlParameter("@open_shake", open_shake),
-                                              new MySqlParameter("@open_scan", open_scan),
-                                              new MySqlParameter("@open_card", open_card),
-                                              new MySqlParameter("@open_store", open_store),
+                                              new MySqlParameter("@qrcode_url", qrcodeUrl),
+                                              new MySqlParameter("@open_pay", openPay),
+                                              new MySqlParameter("@open_shake", openShake),
+                                              new MySqlParameter("@open_scan", openScan),
+                                              new MySqlParameter("@open_card", openCard),
+                                              new MySqlParameter("@open_store", openStore),
                                               new MySqlParameter("@idc", idc),
-                                              new MySqlParameter("@principal_name", principal_name),
-                                              new MySqlParameter("@create_time", dt),
-                                              new MySqlParameter("@update_time", dt)
+                                              new MySqlParameter("@principal_name", principalName),
+                                              new MySqlParameter("@create_time", createTime),
+                                              new MySqlParameter("@update_time", createTime)
                                           };
             return MySqlHelper.ExecuteScalar(ConfigHelper.ConnStr, sql, parameters).ToInt();
         }
 
-        public bool Update(string authorizer_appid, string nick_name, string head_img, int service_type_info, int verify_type_info, string alias, string qrcode_url, int open_pay, int open_shake, int open_scan, int open_card, int open_store, int idc, string principal_name, DateTime dt)
+        public bool Update(string authorizerAppID, string nickName, string headImg, int serviceTypeInfo, int verifyTypeInfo, string alias, string qrcodeUrl, int openPay, int openShake, int openScan, int openCard, int openStore, int idc, string principalName, DateTime updateTime)
         {
             string sql =
                         @"UPDATE `authorizer_info`
@@ -97,26 +97,26 @@ namespace DAL_9H
                             `update_time` = @update_time
                         WHERE `authorizer_appid` = @authorizer_appid;";
             MySqlParameter[] parameters = { 
-                                              new MySqlParameter("@nick_name", nick_name),
-                                              new MySqlParameter("@head_img", head_img),
-                                              new MySqlParameter("@service_type_info", service_type_info),
-                                              new MySqlParameter("@verify_type_info", verify_type_info),
+                                              new MySqlParameter("@nick_name", nickName),
+                                              new MySqlParameter("@head_img", headImg),
+                                              new MySqlParameter("@service_type_info", serviceTypeInfo),
+                                              new MySqlParameter("@verify_type_info", verifyTypeInfo),
                                               new MySqlParameter("@alias", alias),
-                                              new MySqlParameter("@qrcode_url", qrcode_url),
-                                              new MySqlParameter("@open_pay", open_pay),
-                                              new MySqlParameter("@open_shake", open_shake),
-                                              new MySqlParameter("@open_scan", open_scan),
-                                              new MySqlParameter("@open_card", open_card),
-                                              new MySqlParameter("@open_store", open_store),
+                                              new MySqlParameter("@qrcode_url", qrcodeUrl),
+                                              new MySqlParameter("@open_pay", openPay),
+                                              new MySqlParameter("@open_shake", openShake),
+                                              new MySqlParameter("@open_scan", openScan),
+                                              new MySqlParameter("@open_card", openCard),
+                                              new MySqlParameter("@open_store", openStore),
                                               new MySqlParameter("@idc", idc),
-                                              new MySqlParameter("@principal_name", principal_name),
-                                              new MySqlParameter("@authorizer_appid", authorizer_appid),
-                                              new MySqlParameter("@update_time", dt)
+                                              new MySqlParameter("@principal_name", principalName),
+                                              new MySqlParameter("@update_time", updateTime),
+                                              new MySqlParameter("@authorizer_appid", authorizerAppID)
                                           };
             return MySqlHelper.ExecuteNonQuery(ConfigHelper.ConnStr, sql, parameters) > 0;
         }
 
-        public AuthorizerInfoModel GetModel(string authorizer_appid)
+        public AuthorizerInfoModel GetModel(string authorizerAppID)
         {
             string sql =
                         @"SELECT
@@ -141,11 +141,11 @@ namespace DAL_9H
                             `update_time`
                         FROM `authorizer_info`
                         WHERE `authorizer_appid` = @authorizer_appid LIMIT 0, 1;";
-            DataRow dr = MySqlHelper.ExecuteDataRow(ConfigHelper.ConnStr, sql, new MySqlParameter("@authorizer_appid", authorizer_appid));
+            DataRow dr = MySqlHelper.ExecuteDataRow(ConfigHelper.ConnStr, sql, new MySqlParameter("@authorizer_appid", authorizerAppID));
             return EntityToModel(dr);
         }
 
-        public List<AuthorizerInfoModel> GetList(int user_id)
+        public List<AuthorizerInfoModel> GetList(int userID)
         {
             string sql =
                         @"SELECT
@@ -170,7 +170,7 @@ namespace DAL_9H
                             `update_time`
                         FROM `authorizer_info`
                         WHERE `user_id` = @user_id";
-            DataTable dt = MySqlHelper.ExecuteDataset(ConfigHelper.ConnStr, sql, new MySqlParameter("@user_id", user_id)).Tables[0];
+            DataTable dt = MySqlHelper.ExecuteDataset(ConfigHelper.ConnStr, sql, new MySqlParameter("@user_id", userID)).Tables[0];
             return EntityListToModelList(dt);
         }
 
@@ -220,25 +220,25 @@ namespace DAL_9H
             if (dr != null)
             {
                 AuthorizerInfoModel model = new AuthorizerInfoModel();
-                model.Id = dr["id"].ToInt();
-                model.User_Id = dr["user_id"].ToInt();
-                model.Authorizer_AppId = dr["authorizer_appid"].ToString();
-                model.Nick_Name = dr["nick_name"].ToString();
-                model.Head_Img = dr["head_img"].ToString();
-                model.Service_Type_Info = dr["service_type_info"].ToInt();
-                model.Verify_Type_Info = dr["verify_type_info"].ToInt();
-                model.User_Name = dr["user_name"].ToString();
+                model.ID = dr["id"].ToInt();
+                model.UserID = dr["user_id"].ToInt();
+                model.AuthorizerAppID = dr["authorizer_appid"].ToString();
+                model.NickName = dr["nick_name"].ToString();
+                model.HeadImg = dr["head_img"].ToString();
+                model.ServiceTypeInfo = dr["service_type_info"].ToInt();
+                model.VerifyTypeInfo = dr["verify_type_info"].ToInt();
+                model.UserName = dr["user_name"].ToString();
                 model.Alias = dr["alias"].ToString();
-                model.Qrcode_Url = dr["qrcode_url"].ToString();
-                model.Open_Pay = dr["open_pay"].ToInt();
-                model.Open_Shake = dr["open_shake"].ToInt();
-                model.Open_Scan = dr["open_scan"].ToInt();
-                model.Open_Card = dr["open_card"].ToInt();
-                model.Open_Store = dr["open_store"].ToInt();
+                model.QrcodeUrl = dr["qrcode_url"].ToString();
+                model.OpenPay = dr["open_pay"].ToInt();
+                model.OpenShake = dr["open_shake"].ToInt();
+                model.OpenScan = dr["open_scan"].ToInt();
+                model.OpenCard = dr["open_card"].ToInt();
+                model.OpenStore = dr["open_store"].ToInt();
                 model.IDC = dr["idc"].ToInt();
-                model.Principal_Name = dr["principal_name"].ToString();
-                model.Create_Time = dr["create_time"].ToDateTime();
-                model.Update_Time = dr["update_time"].ToDateTime();
+                model.PrincipalName = dr["principal_name"].ToString();
+                model.CreateTime = dr["create_time"].ToDateTime();
+                model.UpdateTime = dr["update_time"].ToDateTime();
                 return model;
             }
             return null;

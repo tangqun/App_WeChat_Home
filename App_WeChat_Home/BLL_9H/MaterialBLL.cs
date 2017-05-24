@@ -16,19 +16,17 @@ namespace BLL_9H
     {
         private IAccessTokenDAL accessTokenDAL = new AccessTokenDAL();
 
-        public int GetCount(string appID, string type)
+        public int GetCount(string authorizerAppID, string type)
         {
             try
             {
-                string materialCountGetUrl = "https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token=" + accessTokenDAL.Get(appID);
+                string url = "https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token=" + accessTokenDAL.Get(authorizerAppID);
 
-                LogHelper.Info("materialCountGetUrl: " + materialCountGetUrl);
+                string responseBody = HttpHelper.Get(url);
 
-                string materialCountGetResp = HttpHelper.Get(materialCountGetUrl);
+                LogHelper.Info("获取素材总数" + "\r\n\r\nresponseBody: " + responseBody);
 
-                LogHelper.Info("materialCountGetResp: " + materialCountGetResp);
-
-                MaterialCountGetResp resp = JsonConvert.DeserializeObject<MaterialCountGetResp>(materialCountGetResp);
+                MaterialCountGetResp resp = JsonConvert.DeserializeObject<MaterialCountGetResp>(responseBody);
 
                 int count = 0;
                 switch (type)
@@ -48,23 +46,26 @@ namespace BLL_9H
             }
         }
 
-        public List<Material> GetPageList(string appID, string type, string key, int pageIndex, int pageSize, out int totalCount)
+        public List<Material> GetPageList(string authorizerAppID, string type, string key, int pageIndex, int pageSize, out int totalCount)
         {
             totalCount = 0;
             try
             {
-                string materialListGetUrl = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=" + accessTokenDAL.Get(appID);
-
-                LogHelper.Info("materialListGetUrl: " + materialListGetUrl);
+                string materialListGetUrl = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=" + accessTokenDAL.Get(authorizerAppID);
 
                 MaterialListGetReq req = new MaterialListGetReq();
                 req.Type = type;
                 req.Offset = (pageIndex - 1) * pageSize;
                 req.Count = pageSize;
                 string requestBody = JsonConvert.SerializeObject(req);
+                
+                LogHelper.Info("获取素材列表" + "\r\n\r\nrequestBody: " + requestBody);
 
-                string materialListGetResp = HttpHelper.Post(materialListGetUrl, requestBody);
-                MaterialListGetResp resp = JsonConvert.DeserializeObject<MaterialListGetResp>(materialListGetResp);
+                string responseBody = HttpHelper.Post(materialListGetUrl, requestBody);
+
+                LogHelper.Info("获取素材列表" + "\r\n\r\nrequestBody: " + requestBody + "\r\n\r\nresponseBody: " + responseBody);
+
+                MaterialListGetResp resp = JsonConvert.DeserializeObject<MaterialListGetResp>(responseBody);
 
                 totalCount = resp.ItemCount;
                 return resp.Item;

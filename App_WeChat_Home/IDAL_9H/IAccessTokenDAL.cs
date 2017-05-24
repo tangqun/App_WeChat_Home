@@ -8,6 +8,6 @@ namespace IDAL_9H
 {
     public interface IAccessTokenDAL
     {
-        string Get(string appid);
+        string Get(string authorizerAppID);
     }
 }
