@@ -14,16 +14,16 @@ namespace Web_9H.Controllers
         public ActionResult Index()
         {
             DateTime dt = DateTime.Now;
-            Session["user"] = new UserModel() {
-                Id = 1,
+            Session["user"] = new UserInfoModel() {
+                ID = 1,
                 Mobile = "15210470906",
                 Salt = "matrix",
                 Password = EncryptHelper.MD5Encrypt(EncryptHelper.MD5Encrypt("123456") + "matrix"),
-                Real_Name = "唐群",
-                User_Stat = 1,
-                Login_Error_Times = 0,
-                Create_Time = dt,
-                Update_Time = dt
+                RealName = "唐群",
+                UserStat = 1,
+                LoginErrorTimes = 0,
+                CreateTime = dt,
+                UpdateTime = dt
             };
             return Redirect("/home");
         }

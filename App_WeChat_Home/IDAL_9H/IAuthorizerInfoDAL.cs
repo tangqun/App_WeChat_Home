@@ -14,5 +14,6 @@ namespace IDAL_9H
         AuthorizerInfoModel GetModel(string authorizerAppID);
         List<AuthorizerInfoModel> GetList(int userID);
         List<AuthorizerInfoModel> GetList();
+        AuthorizerInfoModel GetModel(int id);
     }
 }

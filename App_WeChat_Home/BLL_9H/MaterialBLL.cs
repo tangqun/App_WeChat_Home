@@ -16,7 +16,8 @@ namespace BLL_9H
     {
         private IAccessTokenDAL accessTokenDAL = new AccessTokenDAL();
 
-        public int GetCount(string authorizerAppID, string type)
+        // 与腾讯服务器交换信息
+        private string GetCount(string authorizerAppID, string type)
         {
             try
             {
@@ -26,55 +27,54 @@ namespace BLL_9H
 
                 LogHelper.Info("获取素材总数" + "\r\n\r\nresponseBody: " + responseBody);
 
-                MaterialCountGetResp resp = JsonConvert.DeserializeObject<MaterialCountGetResp>(responseBody);
+                //int count = 0;
+                //switch (type)
+                //{
+                //    case "voice_count": count = resp.VoiceCount; break;
+                //    case "video_count": count = resp.VideoCount; break;
+                //    case "image_count": count = resp.ImageCount; break;
+                //    case "news_count": count = resp.NewsCount; break;
+                //}
 
-                int count = 0;
-                switch (type)
-                {
-                    case "voice_count": count = resp.VoiceCount; break;
-                    case "video_count": count = resp.VideoCount; break;
-                    case "image_count": count = resp.ImageCount; break;
-                    case "news_count": count = resp.NewsCount; break;
-                }
-
-                return count;
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error("唐群", ex);
-                return 0;
-            }
-        }
-
-        public List<Material> GetPageList(string authorizerAppID, string type, string key, int pageIndex, int pageSize, out int totalCount)
-        {
-            totalCount = 0;
-            try
-            {
-                string materialListGetUrl = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=" + accessTokenDAL.Get(authorizerAppID);
-
-                MaterialListGetReq req = new MaterialListGetReq();
-                req.Type = type;
-                req.Offset = (pageIndex - 1) * pageSize;
-                req.Count = pageSize;
-                string requestBody = JsonConvert.SerializeObject(req);
-                
-                LogHelper.Info("获取素材列表" + "\r\n\r\nrequestBody: " + requestBody);
-
-                string responseBody = HttpHelper.Post(materialListGetUrl, requestBody);
-
-                LogHelper.Info("获取素材列表" + "\r\n\r\nrequestBody: " + requestBody + "\r\n\r\nresponseBody: " + responseBody);
-
-                MaterialListGetResp resp = JsonConvert.DeserializeObject<MaterialListGetResp>(responseBody);
-
-                totalCount = resp.ItemCount;
-                return resp.Item;
+                return responseBody;
             }
             catch (Exception ex)
             {
                 LogHelper.Error("唐群", ex);
                 return null;
             }
+        }
+
+        private string BatchGet(string authorizerAppID, string type, int offset, int count)
+        {
+            try
+            {
+                string url = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=" + accessTokenDAL.Get(authorizerAppID);
+
+                MaterialListGetReq req = new MaterialListGetReq();
+                req.Type = type;
+                req.Offset = offset;
+                req.Count = count;
+                string requestBody = JsonConvert.SerializeObject(req);
+                
+                LogHelper.Info("获取素材列表" + "\r\n\r\nrequestBody: " + requestBody);
+
+                string responseBody = HttpHelper.Post(url, requestBody);
+
+                LogHelper.Info("获取素材列表" + "\r\n\r\nrequestBody: " + requestBody + "\r\n\r\nresponseBody: " + responseBody);
+
+                return responseBody;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error("唐群", ex);
+                return null;
+            }
+        }
+
+        public string GetPageList(string authorizerAppID, string type, string key, int pageIndex, int pageSize, out int totalCount)
+        {
+            throw new NotImplementedException();
         }
     }
 }

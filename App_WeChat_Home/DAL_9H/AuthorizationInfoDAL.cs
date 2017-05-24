@@ -13,27 +13,6 @@ namespace DAL_9H
 {
     public class AuthorizationInfoDAL : IAuthorizationInfoDAL
     {
-        public AuthorizationInfoModel GetModel(string authorizerAppID)
-        {
-            string sql =
-                        @"SELECT
-                            `id`,
-                            `authorizer_appid`,
-                            `authorizer_access_token_old`,
-                            `authorizer_access_token`,
-                            `expires_in`,
-                            `authorizer_refresh_token`,
-                            `auth_time`,
-                            `refresh_time`,
-                            `create_time`,
-                            `update_time`
-                        FROM `authorization_info`
-                        WHERE `authorizer_appid` = @authorizer_appid
-                        LIMIT 0, 1;";
-            DataRow dr = MySqlHelper.ExecuteDataRow(ConfigHelper.ConnStr, sql, new MySqlParameter("@authorizer_appid", authorizerAppID));
-            return EntityToModel(dr);
-        }
-
         public int Insert(string authorizerAppID, string authorizerAccessTokenOld, string authorizerAccessToken, int expiresIn, string authorizerRefreshToken, DateTime authTime)
         {
             string sql =
@@ -96,17 +75,26 @@ namespace DAL_9H
             return MySqlHelper.ExecuteNonQuery(ConfigHelper.ConnStr, sql, parameters) > 0;
         }
 
-        private List<AuthorizationInfoModel> EntityListToModelList(DataTable dt)
+
+        public AuthorizationInfoModel GetModel(string authorizerAppID)
         {
-            List<AuthorizationInfoModel> modelList = new List<AuthorizationInfoModel>();
-            if (dt.Rows.Count > 0)
-            {
-                foreach (DataRow dr in dt.Rows)
-                {
-                    modelList.Add(EntityToModel(dr));
-                }
-            }
-            return modelList;
+            string sql =
+                        @"SELECT
+                            `id`,
+                            `authorizer_appid`,
+                            `authorizer_access_token_old`,
+                            `authorizer_access_token`,
+                            `expires_in`,
+                            `authorizer_refresh_token`,
+                            `auth_time`,
+                            `refresh_time`,
+                            `create_time`,
+                            `update_time`
+                        FROM `authorization_info`
+                        WHERE `authorizer_appid` = @authorizer_appid
+                        LIMIT 0, 1;";
+            DataRow dr = MySqlHelper.ExecuteDataRow(ConfigHelper.ConnStr, sql, new MySqlParameter("@authorizer_appid", authorizerAppID));
+            return EntityToModel(dr);
         }
 
         private AuthorizationInfoModel EntityToModel(DataRow dr)
