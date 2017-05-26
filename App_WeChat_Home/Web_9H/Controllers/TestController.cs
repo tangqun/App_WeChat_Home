@@ -17,7 +17,7 @@ namespace Web_9H.Controllers
 
             //return Content(json, "application/json");
 
-            return View(new RESTfulModel() { Code = 1, Msg = "失败" });
+            return View();
         }
     }
 }

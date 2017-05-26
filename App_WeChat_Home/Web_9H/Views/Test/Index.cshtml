@@ -7,47 +7,234 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>授权结果</title>
-
+    <meta charset="utf-8" />
+    <title>测试页面</title>
+    <link href="../../plugins/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="../../plugins/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/fix.css" rel="stylesheet" />
 </head>
 <body>
-    @if (Model.Code == 0)
-    {
-        <script>
-            location.href = '/home';
-        </script>
-    }
-    else
-    {
-        <div class="modal" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">提示信息</h4>
-                    </div>
-                    <div class="modal-body">
-                        @Model.Msg
-                    </div>
+    <div class="page-wrp">
+        
+        <div class="page-hd">
+            <div class="hd-box">
+                <div class="hd-inner">
+
                 </div>
             </div>
         </div>
-    }
+
+        <div class="page-bd">
+            <div class="bd-box">
+                <div class="bd-inner">
+                    <!-- 左边 -->
+                    <div class="bd-left">
+                        <div class="menu-box">
+                            <dl class="menu-inner">
+                                <dt class="menu-item menu-title">
+                                    <a href="javascript:;">
+                                        <i style="background:url(https://res.wx.qq.com/mpres/htmledition/images/icon/menu/icon_menu_function.png) no-repeat;"></i>
+                                        <span>功能</span>
+                                    </a>
+                                </dt>
+                                <dd class="menu-item">
+                                    <a href="#">
+                                        <i></i>
+                                        <span>卡券功能</span>
+                                    </a>
+                                    <a href="#">
+                                        <i></i>
+                                        <span>门店管理</span>
+                                    </a>
+                                </dd>
+                            </dl>
+                            <dl class="menu-inner">
+                                <dt class="menu-item menu-title">
+                                    <a href="javascript:;">
+                                        <i style="background:url(https://res.wx.qq.com/mpres/htmledition/images/icon/menu/icon_menu_management.png) no-repeat;"></i>
+                                        <span>管理</span>
+                                    </a>
+                                </dt>
+                                <dd class="menu-item">
+                                    <a href="/app/material/newslist">
+                                        <i></i>
+                                        <span>素材管理</span>
+                                    </a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <!-- 右边 -->
+                    <div class="bd-right">
+                        <div class="main-hd">
+                            <h2>素材管理</h2>
+                            <div class="tab-box">
+                                <ul class="tab-inner">
+                                    <li class="tab-item active">
+                                        <a href="/app/material/newslist">图文消息</a>
+                                    </li>
+                                    <li class="tab-item">
+                                        <a href="/app/material/imagelist">图片</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="main-bd">
+                            <div class="search-box">
+                                <div class="input-group search-inner">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                </div>
+                            </div>
+                            <div class="sub-title-box">
+                                <div class="sub-title-inner">
+                                    <div class="sub-title-left">
+                                        <h3>
+                                            <span>图文消息(共2条)</span>
+                                        </h3>
+                                    </div>
+                                    <div class="sub-title-right">
+                                        <button type="button" class="btn btn-block btn-success">新建图文素材</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="msgs-box">
+                                <div class="msgs-inner">
+                                    <div class="msg-item">
+                                        <div class="msg-hd">
+                                            更新于 09:53
+                                        </div>
+                                        <div class="msg-bd">
+                                            <div class="msg-title">
+                                                测试二
+                                            </div>
+                                            <div class="msg-thumb-wrp">
+                                                <img src="https://mmbiz.qlogo.cn/mmbiz_png/jTItpJe45JLNBQjKKiapJicznbYVMicDXGzs4EaNVgiao57JSlLgYxrh1OplMF8tr8DJ7RmlAeJmv1h22EePgSl1OQ/0?wx_fmt=png" alt="" />
+                                            </div>
+                                            <div class="msg-desc">
+                                                1111
+                                            </div>
+                                        </div>
+                                        <div class="msg-ft">
+                                            <ul class="msg-ft-inner">
+                                                <li class="msg-opr-item">
+                                                    <a href="#">
+                                                        <i style="background:url(../../img/base_z3560fc.png) 0 -4557px no-repeat;"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="msg-opr-item">
+                                                    <a href="#">
+                                                        <i style="background:url(../../img/base_z3560fc.png) 0 -4007px no-repeat;"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="msg-item">
+                                        <div class="msg-hd">
+                                            更新于 09:53
+                                        </div>
+                                        <div class="msg-bd">
+                                            <div class="msg-title">
+                                                测试二
+                                            </div>
+                                            <div class="msg-thumb-wrp">
+                                                <img src="https://mmbiz.qlogo.cn/mmbiz_png/jTItpJe45JLNBQjKKiapJicznbYVMicDXGzs4EaNVgiao57JSlLgYxrh1OplMF8tr8DJ7RmlAeJmv1h22EePgSl1OQ/0?wx_fmt=png" alt="" />
+                                            </div>
+                                            <div class="msg-desc">
+                                                1111
+                                            </div>
+                                        </div>
+                                        <div class="msg-ft">
+                                            <ul class="msg-ft-inner">
+                                                <li class="msg-opr-item">
+                                                    <a href="#">
+                                                        <i style="background:url(../../img/base_z3560fc.png) 0 -4557px no-repeat;"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="msg-opr-item">
+                                                    <a href="#">
+                                                        <i style="background:url(../../img/base_z3560fc.png) 0 -4007px no-repeat;"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="msg-item">
+                                        <div class="msg-hd">
+                                            更新于 09:53
+                                        </div>
+                                        <div class="msg-bd">
+                                            <div class="msg-title">
+                                                测试二
+                                            </div>
+                                            <div class="msg-thumb-wrp">
+                                                <img src="https://mmbiz.qlogo.cn/mmbiz_png/jTItpJe45JLNBQjKKiapJicznbYVMicDXGzs4EaNVgiao57JSlLgYxrh1OplMF8tr8DJ7RmlAeJmv1h22EePgSl1OQ/0?wx_fmt=png" alt="" />
+                                            </div>
+                                            <div class="msg-desc">
+                                                1111
+                                            </div>
+                                        </div>
+                                        <div class="msg-ft">
+                                            <ul class="msg-ft-inner">
+                                                <li class="msg-opr-item">
+                                                    <a href="#">
+                                                        <i style="background:url(../../img/base_z3560fc.png) 0 -4557px no-repeat;"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="msg-opr-item">
+                                                    <a href="#">
+                                                        <i style="background:url(../../img/base_z3560fc.png) 0 -4007px no-repeat;"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="msg-item">
+                                        <div class="msg-hd">
+                                            更新于 09:53
+                                        </div>
+                                        <div class="msg-bd">
+                                            <div class="msg-title">
+                                                测试二
+                                            </div>
+                                            <div class="msg-thumb-wrp">
+                                                <img src="https://mmbiz.qlogo.cn/mmbiz_png/jTItpJe45JLNBQjKKiapJicznbYVMicDXGzs4EaNVgiao57JSlLgYxrh1OplMF8tr8DJ7RmlAeJmv1h22EePgSl1OQ/0?wx_fmt=png" alt="" />
+                                            </div>
+                                            <div class="msg-desc">
+                                                1111
+                                            </div>
+                                        </div>
+                                        <div class="msg-ft">
+                                            <ul class="msg-ft-inner">
+                                                <li class="msg-opr-item">
+                                                    <a href="#">
+                                                        <i style="background:url(../../img/base_z3560fc.png) 0 -4557px no-repeat;"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="msg-opr-item">
+                                                    <a href="#">
+                                                        <i style="background:url(../../img/base_z3560fc.png) 0 -4007px no-repeat;"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 定位提示 -->
+            </div>
+        </div>
+
+        <div class="page-ft"></div>
+    </div>
 
     <script src="../../plugins/jquery-2.2.4/jquery.js"></script>
     <script src="../../plugins/bootstrap-3.3.7/js/bootstrap.js"></script>
-    @if (Model.Code != 0)
-    {
-        <script>
-            $(function () {
-                $('#infoModal').modal({
-                    backdrop: false,
-                    keyboard: false
-                });
-            })
-        </script>
-    }
 </body>
 </html>
