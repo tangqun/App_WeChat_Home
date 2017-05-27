@@ -7,17 +7,19 @@ using System.Threading.Tasks;
 
 namespace Model_9H
 {
-    public class Material
+    public class MaterialInfoModel
     {
-        [JsonProperty("media_id")]
+        [JsonProperty("mediaID")]
         public string MediaID { get; set; }
         [JsonProperty("content")]
-        public MaterialNewsType Content { get; set; }
+        public List<NewsTypeMaterialInfoModel> NewsTypeMaterialInfoList { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
-        [JsonProperty("update_time")]
-        public DateTime UpdateTime { get; set; }
         [JsonProperty("url")]
         public string Url { get; set; }
+        [JsonProperty("createTime")]
+        public DateTime CreateTime { get; set; }
+        [JsonProperty("updateTime")]
+        public DateTime UpdateTime { get; set; }
     }
 }

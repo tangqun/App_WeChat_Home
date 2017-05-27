@@ -16,25 +16,18 @@ namespace Web_9H.Areas.App.Controllers
 
         public ActionResult NewsList(string key = "", int pageIndex = 1, int pageSize = 12)
         {
-            //int totalCount = 0;
-            //List<Material> modelList = materialBLL.GetPageList("", "news", key, pageIndex, pageSize, out totalCount);
-            //PagedList<Material> pagedList = new PagedList<Material>(modelList, pageIndex, pageSize, totalCount);
-            return View();
+            int totalCount = 0;
+            List<MaterialInfoModel> modelList = materialBLL.GetPageList(CurrentAuthorizer.AuthorizerAppID, "news", key, pageIndex, pageSize, out totalCount);
+            PagedList<MaterialInfoModel> pagedList = new PagedList<MaterialInfoModel>(modelList, pageIndex, pageSize, totalCount);
+            return View(pagedList);
         }
 
         public ActionResult ImageList(int pageIndex = 1, int pageSize = 10)
         {
-            return View();
-        }
-
-        public ActionResult VoiceList(int pageIndex = 1, int pageSize = 10)
-        {
-            return View();
-        }
-
-        public ActionResult VideoList(int pageIndex = 1, int pageSize = 10)
-        {
-            return View();
+            int totalCount = 0;
+            List<MaterialInfoModel> modelList = materialBLL.GetPageList(CurrentAuthorizer.AuthorizerAppID, "image", null, pageIndex, pageSize, out totalCount);
+            PagedList<MaterialInfoModel> pagedList = new PagedList<MaterialInfoModel>(modelList, pageIndex, pageSize, totalCount);
+            return View(pagedList);
         }
     }
 }

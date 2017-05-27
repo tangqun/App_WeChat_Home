@@ -15,6 +15,8 @@ namespace BLL_9H
     public class MaterialBLL: IMaterialBLL
     {
         private IAccessTokenDAL accessTokenDAL = new AccessTokenDAL();
+        private IMaterialInfoDAL materialInfoDAL = new MaterialInfoDAL();
+        private INewsTypeMaterialInfoDAL newsTypeMaterialInfoDAL = new NewsTypeMaterialInfoDAL();
 
         // 与腾讯服务器交换信息
         private string GetCount(string authorizerAppID, string type)
@@ -72,9 +74,66 @@ namespace BLL_9H
             }
         }
 
-        public string GetPageList(string authorizerAppID, string type, string key, int pageIndex, int pageSize, out int totalCount)
+        // 自家数据库
+        public List<MaterialInfoModel> GetPageList(string authorizerAppID, string type, string key, int pageIndex, int pageSize, out int totalCount)
         {
-            throw new NotImplementedException();
+            totalCount = 0;
+            try
+            {
+                if (type == "news")
+                {
+                    if (string.IsNullOrEmpty(key))
+                    {
+                        List<MaterialInfoModel> modelList = materialInfoDAL.GetPageList(authorizerAppID, type, pageIndex, pageSize, out totalCount);
+                        if (modelList.Any())
+                        {
+                            foreach (var model in modelList)
+                            {
+                                model.NewsTypeMaterialInfoList = newsTypeMaterialInfoDAL.GetList(model.MediaID);
+                            }
+                        }
+                        return modelList;
+                    }
+                    else
+                    {
+                        // 搜索
+                        List<NewsTypeMaterialInfoModel> newsTypeMaterialInfoList = newsTypeMaterialInfoDAL.GetMediaIDList(authorizerAppID, key);
+                        totalCount = newsTypeMaterialInfoList.Count;
+
+                        List<MaterialInfoModel> modelList = new List<MaterialInfoModel>();
+
+                        int offset = (pageIndex - 1) * pageSize;
+                        int endSize = pageIndex * pageSize;
+                        if (totalCount > endSize)
+                        {
+                            for (int i = offset; i < endSize; i++)
+                            {
+                                NewsTypeMaterialInfoModel newsTypeMaterialInfoModel = newsTypeMaterialInfoList[i];
+                                modelList.Add(new MaterialInfoModel() { MediaID = newsTypeMaterialInfoModel.MediaID, NewsTypeMaterialInfoList = newsTypeMaterialInfoDAL.GetList(newsTypeMaterialInfoModel.MediaID), });
+                            }
+                        }
+                        else
+                        {
+                            for (int i = offset; i < totalCount; i++)
+                            {
+                                NewsTypeMaterialInfoModel newsTypeMaterialInfoModel = newsTypeMaterialInfoList[i];
+                                modelList.Add(new MaterialInfoModel() { MediaID = newsTypeMaterialInfoModel.MediaID, NewsTypeMaterialInfoList = newsTypeMaterialInfoDAL.GetList(newsTypeMaterialInfoModel.MediaID) });
+                            }
+                        }
+                    }
+                }
+                else if (type == "image")
+                {
+                    return materialInfoDAL.GetPageList(authorizerAppID, type, pageIndex, pageSize, out totalCount);
+                }
+
+                return new List<MaterialInfoModel>();
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error("唐群", ex);
+                return null;
+            }
         }
     }
 }

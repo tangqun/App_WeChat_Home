@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Model_9H
 {
-    public class MaterialNewsType
+    public class NewsTypeMaterial
     {
         [JsonProperty("news_item")]
-        public List<MaterialNewsTypeInfo> NewsItem { get; set; }
+        public List<NewsTypeMaterialInfo> NewsItem { get; set; }
     }
 }

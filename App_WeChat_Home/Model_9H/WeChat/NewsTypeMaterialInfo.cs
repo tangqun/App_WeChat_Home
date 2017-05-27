@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Model_9H
 {
-    public class MaterialNewsTypeInfo
+    public class NewsTypeMaterialInfo
     {
         [JsonProperty("title")]
         public string Title { get; set; }
         [JsonProperty("thumb_media_id")]
         public string ThumbMediaID { get; set; }
         [JsonProperty("show_cover_pic")]
-        public string ShowCoverPic { get; set; }
+        public int ShowCoverPic { get; set; }
         [JsonProperty("author")]
         public string Author { get; set; }
         [JsonProperty("digest")]

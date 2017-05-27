@@ -14,6 +14,6 @@ namespace Model_9H
         [JsonProperty("item_count")]
         public int ItemCount { get; set; }
         [JsonProperty("item")]
-        public List<Material> Item { get; set; }
+        public List<MaterialInfo> Item { get; set; }
     }
 }

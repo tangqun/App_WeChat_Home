@@ -1,17 +1,47 @@
-﻿@model PagedList<Model_9H.Material>
+﻿@model PagedList<Model_9H.MaterialInfoModel>
 @{
-    ViewBag.Title = "图文消息";
     Layout = "~/Areas/App/Views/Shared/_Layout.cshtml";
 }
 
-@using (Ajax.BeginForm("AjaxSearchGet", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "articles", HttpMethod = "Get", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" } }))
-{
-    <span>标题：</span><input type="text" name="title" id="title" style="width:120px" />
-    <input type="submit" value="搜索(S)" accesskey="S" />
-}
-<div id="articles">
-    @Html.Partial("NewsListPartial", Model)
+<div class="main-hd">
+    <h2>素材管理</h2>
+    <div class="tab-box">
+        <ul class="tab-inner">
+            <li class="tab-item active">
+                <a href="/app/material/newslist">图文消息</a>
+            </li>
+            <li class="tab-item">
+                <a href="/app/material/imagelist">图片</a>
+            </li>
+        </ul>
+    </div>
 </div>
+<div class="main-bd">
+    <div class="search-box">
+        <div class="input-group search-inner">
+            <input type="text" class="form-control">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        </div>
+    </div>
+    <div class="sub-title-box">
+        <div class="sub-title-inner">
+            <div class="sub-title-left">
+                <h3>
+                    <span>图文消息(共2条)</span>
+                </h3>
+            </div>
+            <div class="sub-title-right">
+                <button type="button" class="btn btn-block btn-success">新建图文素材</button>
+            </div>
+        </div>
+    </div>
+    <div class="msgs-box">
+        <div class="msgs-inner" id="partial">
+            @Html.Partial("NewsListPartial", Model)
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     @{Html.RegisterMvcPagerScriptResource();}
     <script type="text/javascript" src="../../../../Scripts/jquery.unobtrusive-ajax.js"></script>

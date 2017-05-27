@@ -54,6 +54,8 @@
     <Compile Include="CodeMsgDAL.cs" />
     <Compile Include="ComponentAccessTokenDAL.cs" />
     <Compile Include="FuncInfoDAL.cs" />
+    <Compile Include="MaterialInfoDAL.cs" />
+    <Compile Include="NewsTypeMaterialInfoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

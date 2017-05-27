@@ -46,6 +46,8 @@
     <Compile Include="ICodeMsgDAL.cs" />
     <Compile Include="IComponentAccessTokenDAL.cs" />
     <Compile Include="IFuncInfoDAL.cs" />
+    <Compile Include="IMaterialInfoDAL.cs" />
+    <Compile Include="INewsTypeMaterialInfoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
