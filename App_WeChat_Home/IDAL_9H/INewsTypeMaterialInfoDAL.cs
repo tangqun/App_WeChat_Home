@@ -9,7 +9,7 @@ namespace IDAL_9H
 {
     public interface INewsTypeMaterialInfoDAL
     {
-        List<NewsTypeMaterialInfoModel> GetMediaIDList(string authorizerAppID, string key);
+        List<NewsTypeMaterialInfoModel> GetList(string authorizerAppID, string key);
         List<NewsTypeMaterialInfoModel> GetList(string mediaID);
     }
 }

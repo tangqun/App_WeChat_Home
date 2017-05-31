@@ -97,7 +97,7 @@ namespace BLL_9H
                     else
                     {
                         // 搜索
-                        List<NewsTypeMaterialInfoModel> newsTypeMaterialInfoList = newsTypeMaterialInfoDAL.GetMediaIDList(authorizerAppID, key);
+                        List<NewsTypeMaterialInfoModel> newsTypeMaterialInfoList = newsTypeMaterialInfoDAL.GetList(authorizerAppID, key);
                         totalCount = newsTypeMaterialInfoList.Count;
 
                         List<MaterialInfoModel> modelList = new List<MaterialInfoModel>();
