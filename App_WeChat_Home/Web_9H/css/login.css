@@ -1,0 +1,82 @@
+﻿body {
+    font-size: 14px;
+    color: #222222;
+}
+
+/********* head ***********/
+.head {
+    
+}
+
+.head-box {
+    background-color: #ffffff;
+    border-top: 4px solid #44b549;
+    border-bottom: 1px solid #d9dadc;
+}
+
+.head-box .inner {
+    width: 1200px;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.head-box .inner:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.banner {
+    
+}
+
+.banner .inner {
+    width: 1200px;
+    height: 460px;
+    margin: 0 auto;
+}
+
+.banner .inner:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+/********* body ***********/
+.body {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 36px 0 88px 0;
+}
+
+.account-kind-box h3 {
+    padding-top: 45px;
+    padding-bottom: 20px;
+}
+
+.account-kind-list {
+
+}
+
+.account-kind-list:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.account-kind-item {
+    float: left;
+    width: 297px;
+    height: 304px;
+    margin-left: 4px;
+    border: 1px solid #e7e7eb;
+}
+
+.account-kind-item:first-child {
+    margin-left: 0;
+}
+
+/********* page-ft ***********/
+.foot {
+
+}

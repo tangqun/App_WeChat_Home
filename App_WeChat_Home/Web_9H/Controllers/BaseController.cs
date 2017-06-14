@@ -20,17 +20,10 @@ namespace Web_9H.Controllers
             }
             else
             {
-                filterContext.Result = new HttpStatusCodeResult(500);
+                filterContext.Result = new RedirectResult("/login");
             }
 
-            OnAppActionExecuting(filterContext);
-
             base.OnActionExecuting(filterContext);
-        }
-
-        protected virtual void OnAppActionExecuting(ActionExecutingContext filterContext)
-        {
-
         }
     }
 }
