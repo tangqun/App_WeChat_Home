@@ -8,35 +8,37 @@
     
 }
 
-.head-box {
+/********* navbar ***********/
+.navbar-box {
     background-color: #ffffff;
     border-top: 4px solid #44b549;
     border-bottom: 1px solid #d9dadc;
 }
 
-.head-box .inner {
+.navbar-box .inner {
     width: 1200px;
     height: 60px;
     margin: 0 auto;
 }
 
-.head-box .inner:after {
+.navbar-box .inner:after {
     display: block;
     content: '';
     clear: both;
 }
 
-.banner {
+/********* banner ***********/
+.banner-box {
     
 }
 
-.banner .inner {
+.banner-box .inner {
     width: 1200px;
     height: 460px;
     margin: 0 auto;
 }
 
-.banner .inner:after {
+.banner-box .inner:after {
     display: block;
     content: '';
     clear: both;
@@ -47,6 +49,11 @@
     width: 1200px;
     margin: 0 auto;
     padding: 36px 0 88px 0;
+}
+
+/********* account-kind ***********/
+.account-kind-box {
+
 }
 
 .account-kind-box h3 {
@@ -69,11 +76,28 @@
     width: 297px;
     height: 304px;
     margin-left: 4px;
+    padding: 40px;
     border: 1px solid #e7e7eb;
 }
 
 .account-kind-item:first-child {
     margin-left: 0;
+}
+
+.account-kind-hd span {
+    width: 86px;
+    height: 86px;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+.account-kind-bd, .account-kind-ft {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.account-kind-bd {
+    font-size: 16px;
 }
 
 /********* page-ft ***********/
