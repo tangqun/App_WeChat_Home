@@ -1,44 +1,37 @@
-﻿body {
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.err-group {
+    margin-bottom: 5px;
+}
+
+.err-tips {
+    color: #ff0000;
+}
+
+body {
     font-size: 14px;
     color: #222222;
 }
 
 /********* head ***********/
 .head {
-    
+    background-color: #0da3f9;
 }
 
-/********* navbar ***********/
-.navbar-box {
-    background-color: #ffffff;
-    border-top: 4px solid #44b549;
-    border-bottom: 1px solid #d9dadc;
-}
-
-.navbar-box .inner {
+.head .inner {
     width: 1200px;
     height: 60px;
     margin: 0 auto;
 }
 
-.navbar-box .inner:after {
-    display: block;
-    content: '';
-    clear: both;
-}
-
-/********* banner ***********/
-.banner-box {
-    
-}
-
-.banner-box .inner {
-    width: 1200px;
-    height: 460px;
-    margin: 0 auto;
-}
-
-.banner-box .inner:after {
+.head .inner:after {
     display: block;
     content: '';
     clear: both;
@@ -46,58 +39,98 @@
 
 /********* body ***********/
 .body {
+    padding: 20px 0;
+}
+
+.body .inner {
     width: 1200px;
     margin: 0 auto;
-    padding: 36px 0 88px 0;
 }
 
-/********* account-kind ***********/
-.account-kind-box {
-
-}
-
-.account-kind-box h3 {
-    padding-top: 45px;
-    padding-bottom: 20px;
-}
-
-.account-kind-list {
-
-}
-
-.account-kind-list:after {
+.body .inner:after {
     display: block;
     content: '';
     clear: both;
 }
 
-.account-kind-item {
+/********* login ***********/
+.login-bg {
     float: left;
-    width: 297px;
-    height: 304px;
-    margin-left: 4px;
-    padding: 40px;
-    border: 1px solid #e7e7eb;
+    width: 600px;
+    height: 500px;
 }
 
-.account-kind-item:first-child {
-    margin-left: 0;
+.login-box {
+    float: right;
+    width: 400px;
+    margin-top: 60px;
+    padding: 60px 50px;
+    border: 1px solid #e7e7e7;
+    box-sizing: border-box;
 }
 
-.account-kind-hd span {
-    width: 86px;
-    height: 86px;
+.login-box:after {
     display: block;
-    margin: 0 auto 20px auto;
+    content: '';
+    clear: both;
 }
 
-.account-kind-bd, .account-kind-ft {
+.login-box dt {
+    font-size: 20px;
+}
+
+.login-box dd {
+    margin-top: 20px;
+}
+
+.login-box .input-group {
+    position: relative;
+    padding-left: 55px;
+    border: 1px solid #e7e7e7;
+}
+
+.login-box .input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    margin-top: -15px;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.login-box .input-group input {
+    width: 100%;
+    padding: 15px 0;
+    border: 0;
+    outline: 0;
+}
+
+.login-box label {
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.login-box .remember {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px
+}
+
+.login-box .btn-login {
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
     text-align: center;
-    margin-bottom: 20px;
+    background: #0da3f9;
+    color: #ffffff;
+    border: 0;
+    font-size: 20px;
 }
 
-.account-kind-bd {
-    font-size: 16px;
+.login-box .forget {
+    color: #222222;
 }
 
 /********* page-ft ***********/

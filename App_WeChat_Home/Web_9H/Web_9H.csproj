@@ -101,14 +101,16 @@
     <Content Include="css\layout.css" />
     <Content Include="css\login.css" />
     <Content Include="Global.asax" />
-    <Content Include="img\account-kind-app.png" />
-    <Content Include="img\account-kind-enterprise.png" />
-    <Content Include="img\account-kind-service.png" />
-    <Content Include="img\account-kind-subscribe.png" />
-    <Content Include="img\base_z3560fc.png" />
+    <Content Include="img\account_kind_app.png" />
+    <Content Include="img\account_kind_enterprise.png" />
+    <Content Include="img\account_kind_service.png" />
+    <Content Include="img\account_kind_subscribe.png" />
     <Content Include="img\bg_login_banner.jpg" />
     <Content Include="img\icon_menu_function.png" />
     <Content Include="img\icon_menu_management.png" />
+    <Content Include="img\login_bg.png" />
+    <Content Include="img\login_pwd.png" />
+    <Content Include="img\login_user.png" />
     <Content Include="plugins\bootstrap-3.3.7\css\bootstrap-theme.css" />
     <Content Include="plugins\bootstrap-3.3.7\css\bootstrap-theme.css.map" />
     <Content Include="plugins\bootstrap-3.3.7\css\bootstrap-theme.min.css" />
@@ -132,6 +134,10 @@
     <Content Include="plugins\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="plugins\jquery-ajax-unobtrusive\jquery.unobtrusive-ajax.js" />
     <Content Include="plugins\jquery-ajax-unobtrusive\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="plugins\jquery.validate.unobtrusive\jquery.validate.unobtrusive.js" />
+    <Content Include="plugins\jquery.validate.unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <Content Include="plugins\jquery.validate\jquery.validate.js" />
+    <Content Include="plugins\jquery.validate\jquery.validate.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

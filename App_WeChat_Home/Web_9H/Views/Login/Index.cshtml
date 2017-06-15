@@ -1,4 +1,4 @@
-﻿
+﻿@model Model_9H.LoginModel
 @{
     Layout = null;
 }
@@ -11,87 +11,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>微信公众平台</title>
-    <link href="../../plugins/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="../../plugins/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" />
-    <link href="../../css/fix.css" rel="stylesheet" />
     <link href="../../css/login.css" rel="stylesheet" />
 </head>
 <body>
     <div class="wrapper">
 
         <div class="head">
-            <div class="navbar-box">
-                <div class="inner">
-                    <div class="logo">
+            <div class="inner">
 
-                    </div>
-                    <div class="account">
-
-                    </div>
-                </div>
-            </div>
-            <div class="banner-box" style="background: url('../../img/bg_login_banner.jpg') no-repeat center center #090b1a">
-                <div class="inner">
-                    <div class="login-box">
-                        <h3>登陆</h3>
-                        @using (Ajax.BeginForm("index", null, new AjaxOptions() { OnBegin = "beginCall", OnSuccess = "successCall", HttpMethod = "Post" }, new { }))
-                        {
-
-                        }
-                    </div>
-                </div>
             </div>
         </div>
 
         <div class="body">
-            <div class="account-kind-box">
-                <h3>帐号分类</h3>
-                <div class="account-kind-list">
-                    <div class="account-kind-item">
-                        <div class="account-kind-hd">
-                            <span style="background: url('../../img/account-kind-service.png') no-repeat"></span>
-                        </div>
-                        <div class="account-kind-bd">
-                            服务号
-                        </div>
-                        <div class="account-kind-ft">
-                            给企业和组织提供更强大的业务服务与用户管理能力，帮助企业快速实现全新的公众号服务平台。
-                        </div>
-                    </div>
-                    <div class="account-kind-item">
-                        <div class="account-kind-hd">
-                            <span style="background: url('../../img/account-kind-subscribe.png') no-repeat"></span>
-                        </div>
-                        <div class="account-kind-bd">
-                            订阅号
-                        </div>
-                        <div class="account-kind-ft">
-                            为媒体和个人提供一种新的信息传播方式，构建与读者之间更好的沟通与管理模式。
-                        </div>
-                    </div>
-                    <div class="account-kind-item">
-                        <div class="account-kind-hd">
-                            <span style="background: url('../../img/account-kind-app.png') no-repeat"></span>
-                        </div>
-                        <div class="account-kind-bd">
-                            小程序
-                        </div>
-                        <div class="account-kind-ft">
-                            一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。
-                        </div>
-                    </div>
-                    <div class="account-kind-item">
-                        <div class="account-kind-hd">
-                            <span style="background: url('../../img/account-kind-enterprise.png') no-repeat"></span>
-                        </div>
-                        <div class="account-kind-bd">
-                            企业号
-                        </div>
-                        <div class="account-kind-ft">
-                            为企业或组织提供移动应用入口，帮助企业建立与员工、上下游供应链及企业应用间的连接。
-                        </div>
-                    </div>
-                </div>
+            <div class="inner">
+                <div class="login-bg" style="background: url('../../img/login_bg.png') no-repeat"></div>
+
+                @using (Ajax.BeginForm("index", null, new AjaxOptions() { OnBegin = "beginCall", OnSuccess = "successCall", HttpMethod = "Post" }, new { }))
+                {
+                    <dl class="login-box">
+                        <dt>登陆</dt>
+                        <dd>
+                            <div class="err-group">
+                                @Html.ValidationMessageFor(o => o.Mobile, null, new { @class = "err-tips" })
+                                @Html.ValidationMessageFor(o => o.Password, null, new { @class = "err-tips" })
+                            </div>
+                            <div class="input-group">
+                                <i style="background: url('../../img/login_user.png') no-repeat"></i>
+                                @Html.TextBoxFor(o => o.Mobile, new { @class = "form-control", placeholder = "手机号" })
+                            </div>
+                        </dd>
+                        <dd>
+                            <div class="input-group">
+                                <i style="background: url('../../img/login_pwd.png') no-repeat"></i>
+                                @Html.PasswordFor(o => o.Password, new { @class = "form-control", placeholder = "密码" })
+                            </div>
+                        </dd>
+                        <dd>
+                            <label><input type="checkbox" value="" class="remember" />记住账号</label>
+                        </dd>
+                        <dd>
+                            <input type="submit" value="登陆" class="btn-login" />
+                        </dd>
+                        <dd><a href="#" class="forget">忘记密码？</a></dd>
+                    </dl>
+                }
             </div>
         </div>
 
@@ -99,6 +62,8 @@
     </div>
 
     <script src="../../plugins/jquery-2.2.4/jquery.js"></script>
-    <script src="../../plugins/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <script src="../../plugins/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script src="../../plugins/jquery.validate/jquery.validate.js"></script>
+    <script src="../../plugins/jquery.validate.unobtrusive/jquery.validate.unobtrusive.js"></script>
 </body>
 </html>

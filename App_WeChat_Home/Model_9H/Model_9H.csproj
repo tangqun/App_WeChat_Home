@@ -35,6 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,6 +50,7 @@
     <Compile Include="CodeMsgModel.cs" />
     <Compile Include="Enums\CodeEnum.cs" />
     <Compile Include="FuncInfoModel.cs" />
+    <Compile Include="LoginModel.cs" />
     <Compile Include="MaterialInfoModel.cs" />
     <Compile Include="NewsTypeMaterialInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
