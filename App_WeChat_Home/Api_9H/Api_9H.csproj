@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A6558B0F-E8AB-49E8-95BA-460F7C8A8454}</ProjectGuid>
+    <ProjectGuid>{DBE6702F-93BC-4B69-9E30-726E139B0142}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Web_9H</RootNamespace>
-    <AssemblyName>Web_9H</AssemblyName>
+    <RootNamespace>Api_9H</RootNamespace>
+    <AssemblyName>Api_9H</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Api_9H.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,6 +42,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Api_9H.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -48,8 +50,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
@@ -57,11 +59,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -71,14 +68,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -90,104 +79,37 @@
       <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Webdiyer.MvcPager, Version=3.0.2015.802, Culture=neutral, PublicKeyToken=f6872c5a09aed72c, processorArchitecture=MSIL">
-      <HintPath>..\packages\Webdiyer.MvcPager.3.0.1.1\lib\Webdiyer.MvcPager.dll</HintPath>
-      <Private>True</Private>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Web.Razor">
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Webpages">
-      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Webpages.Deployment">
-      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Webpages.Razor">
-      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Helpers">
-      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure">
-      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="css\fix.css" />
-    <Content Include="css\layout.css" />
-    <Content Include="css\login.css" />
     <Content Include="Global.asax" />
-    <Content Include="img\account_kind_app.png" />
-    <Content Include="img\account_kind_enterprise.png" />
-    <Content Include="img\account_kind_service.png" />
-    <Content Include="img\account_kind_subscribe.png" />
-    <Content Include="img\bg_login_banner.jpg" />
-    <Content Include="img\icon_menu_function.png" />
-    <Content Include="img\icon_menu_management.png" />
-    <Content Include="img\login_bg.png" />
-    <Content Include="img\login_pwd.png" />
-    <Content Include="img\login_user.png" />
-    <Content Include="login.html" />
-    <Content Include="plugins\bootstrap\css\bootstrap-theme.css" />
-    <Content Include="plugins\bootstrap\css\bootstrap-theme.css.map" />
-    <Content Include="plugins\bootstrap\css\bootstrap-theme.min.css" />
-    <Content Include="plugins\bootstrap\css\bootstrap-theme.min.css.map" />
-    <Content Include="plugins\bootstrap\css\bootstrap.css" />
-    <Content Include="plugins\bootstrap\css\bootstrap.css.map" />
-    <Content Include="plugins\bootstrap\css\bootstrap.min.css" />
-    <Content Include="plugins\bootstrap\css\bootstrap.min.css.map" />
-    <Content Include="plugins\bootstrap\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="plugins\bootstrap\js\bootstrap.js" />
-    <Content Include="plugins\bootstrap\js\bootstrap.min.js" />
-    <Content Include="plugins\bootstrap\js\npm.js" />
-    <Content Include="plugins\font-awesome\css\font-awesome.css" />
-    <Content Include="plugins\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="plugins\jquery-cookie\jquery.cookie.min.js" />
-    <Content Include="plugins\jquery-cookie\jquery.cookie.js" />
-    <Content Include="plugins\jquery\jquery.js" />
-    <Content Include="plugins\jquery\jquery.min.js" />
-    <Content Include="plugins\font-awesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="plugins\font-awesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="plugins\font-awesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="plugins\font-awesome\fonts\fontawesome-webfont.woff2" />
-    <Content Include="plugins\font-awesome\fonts\FontAwesome.otf" />
-    <Content Include="plugins\jquery-ajax-unobtrusive\jquery.unobtrusive-ajax.js" />
-    <Content Include="plugins\jquery-ajax-unobtrusive\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="plugins\jquery.validate.unobtrusive\jquery.validate.unobtrusive.js" />
-    <Content Include="plugins\jquery.validate.unobtrusive\jquery.validate.unobtrusive.min.js" />
-    <Content Include="plugins\jquery.validate\jquery.validate.js" />
-    <Content Include="plugins\jquery.validate\jquery.validate.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="plugins\bootstrap\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="plugins\bootstrap\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="plugins\jquery\jquery.min.map" />
-    <Content Include="Log4Net.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Home\RecvAuth.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -197,23 +119,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="js\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL_9H\BLL_9H.csproj">
-      <Project>{701d5b37-4c6b-4ab2-a557-f132a184d21b}</Project>
-      <Name>BLL_9H</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Helper_9H\Helper_9H.csproj">
-      <Project>{ccae3ddd-2723-445a-bae8-162c927917e9}</Project>
-      <Name>Helper_9H</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IBLL_9H\IBLL_9H.csproj">
-      <Project>{c2edc61e-c2af-41be-a170-b24a239254c5}</Project>
-      <Name>IBLL_9H</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Model_9H\Model_9H.csproj">
       <Project>{47008bc2-98d0-4610-b529-0652c367cc0d}</Project>
       <Name>Model_9H</Name>
@@ -232,9 +140,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>26045</DevelopmentServerPort>
+          <DevelopmentServerPort>26569</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:26045/</IISUrl>
+          <IISUrl>http://localhost:26353/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

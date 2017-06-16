@@ -13,9 +13,9 @@ namespace Model_9H
         public int Code { get; set; }
         [JsonProperty("msg")]
         public string Msg { get; set; }
-        [JsonProperty("data")]
+        [JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
         public object Data { get; set; }
-        [JsonProperty("desc")]
+        [JsonProperty("desc", NullValueHandling = NullValueHandling.Ignore)]
         public string Desc { get; set; }
     }
 }
