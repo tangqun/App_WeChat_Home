@@ -9,27 +9,27 @@ using System.Web.Mvc;
 
 namespace Web_9H.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
         private IAuthBLL authBLL = new AuthBLL();
         private IAuthorizerInfoBLL authorizerInfoBLL = new AuthorizerInfoBLL();
 
         public ActionResult Index()
         {
-            return View(authorizerInfoBLL.GetList(CurrentUser.ID));
+            return View();
         }
 
-        public ActionResult GoAuth()
-        {
-            string component_appid = ConfigHelper.ComponentAppId;
-            string pre_auth_code = authBLL.GetPreAuthCode();
-            string redirect_uri = ConfigHelper.Domain + "home/recvauth";
-            return Redirect("https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=" + component_appid + "&pre_auth_code=" + pre_auth_code + "&redirect_uri=" + redirect_uri);
-        }
+        //public ActionResult GoAuth()
+        //{
+        //    string component_appid = ConfigHelper.ComponentAppId;
+        //    string pre_auth_code = authBLL.GetPreAuthCode();
+        //    string redirect_uri = ConfigHelper.Domain + "home/recvauth";
+        //    return Redirect("https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=" + component_appid + "&pre_auth_code=" + pre_auth_code + "&redirect_uri=" + redirect_uri);
+        //}
 
-        public ActionResult RecvAuth(string auth_code, int expires_in)
-        {
-            return View(authBLL.RecvAuth(auth_code, expires_in, CurrentUser.ID));
-        }
+        //public ActionResult RecvAuth(string auth_code, int expires_in)
+        //{
+        //    return View(authBLL.RecvAuth(auth_code, expires_in, CurrentUser.ID));
+        //}
     }
 }
