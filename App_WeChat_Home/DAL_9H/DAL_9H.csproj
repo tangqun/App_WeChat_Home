@@ -57,6 +57,7 @@
     <Compile Include="MaterialInfoDAL.cs" />
     <Compile Include="NewsTypeMaterialInfoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserInfoDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Helper_9H\Helper_9H.csproj">

@@ -34,7 +34,10 @@ namespace DAL_9H
             // 成功
             new CodeMsgModel(){ Code = (int)CodeEnum.成功, Msg = "{0}" },
             // 失败
-            new CodeMsgModel(){ Code = (int)CodeEnum.失败, Msg = "{0}" }
+            new CodeMsgModel(){ Code = (int)CodeEnum.失败, Msg = "{0}" },
+
+            new CodeMsgModel(){ Code = (int)CodeEnum.账号不存在, Msg = "账号不存在" },
+            new CodeMsgModel(){ Code = (int)CodeEnum.密码错误, Msg = "密码错误" },
         };
 
         private Singleton_CodeMsg() { }

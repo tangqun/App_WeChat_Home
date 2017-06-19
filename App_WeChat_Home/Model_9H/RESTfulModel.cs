@@ -17,5 +17,10 @@ namespace Model_9H
         public object Data { get; set; }
         [JsonProperty("desc", NullValueHandling = NullValueHandling.Ignore)]
         public string Desc { get; set; }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
     }
 }

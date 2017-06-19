@@ -14,56 +14,60 @@
     <link href="../../css/login.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="wrapper">
-
-        <div class="head">
-            <div class="inner">
+    <div class="bg-azure head">
+        <div class="width-1200 bg-azure margin-horizontal-center">
+            <div class="pull-left width-200 height-50 logo">
 
             </div>
+            <div style="clear: both;"></div>
         </div>
+    </div>
 
-        <div class="body">
-            <div class="inner">
-                <div class="login-bg" style="background: url('../../img/login_bg.png') no-repeat"></div>
+    <div class="margin-top-100 body">
+        <div class="width-1200 margin-horizontal-center">
+            <div class="pull-left width-600 height-500" style="background: url('../../img/login_bg.png') no-repeat"></div>
 
-                @using (Ajax.BeginForm("index", null, new AjaxOptions() { OnBegin = "beginCall", OnSuccess = "successCall", HttpMethod = "Post" }, new { }))
+            <div class="pull-left width-400 height-500 margin-left-200 padding-15 border-gray">
+
+                @using (Ajax.BeginForm("index", null, new AjaxOptions() { HttpMethod = "Post", OnBegin = "beginCall", OnSuccess = "successCall" }, new { }))
                 {
-                    <dl class="login-box">
-                        <dt>登陆</dt>
-                        <dd>
-                            <div class="err-group">
-                                @Html.ValidationMessageFor(o => o.Mobile, null, new { @class = "err-tips" })
-                                @Html.ValidationMessageFor(o => o.Password, null, new { @class = "err-tips" })
-                            </div>
-                            <div class="input-group">
-                                <i style="background: url('../../img/login_user.png') no-repeat"></i>
-                                @Html.TextBoxFor(o => o.Mobile, new { @class = "form-control", placeholder = "手机号" })
-                            </div>
-                        </dd>
-                        <dd>
-                            <div class="input-group">
-                                <i style="background: url('../../img/login_pwd.png') no-repeat"></i>
-                                @Html.PasswordFor(o => o.Password, new { @class = "form-control", placeholder = "密码" })
-                            </div>
-                        </dd>
-                        <dd>
-                            <label><input type="checkbox" value="" class="remember" />记住账号</label>
-                        </dd>
-                        <dd>
-                            <input type="submit" value="登陆" class="btn-login" />
-                        </dd>
-                        <dd><a href="#" class="forget">忘记密码？</a></dd>
-                    </dl>
+                    <div class="width-full height-100"></div>
+                    <div class="b margin-bottom-15">登陆</div>
+                    <div class="margin-bottom-15">
+                        <div class="pos-relative padding-left-55 border-gray">
+                            <i class="pos-absolute width-24 height-24 left-15 top-8" style="background: url('../../img/login_user.png') no-repeat"></i>
+                            <input type="text" name="mobile" value="" class="width-full height-40 border-0 outline-0" />
+                        </div>
+                    </div>
+                    <div class="margin-bottom-15">
+                        <div class="pos-relative padding-left-55 border-gray">
+                            <i class="pos-absolute width-24 height-24 left-15 top-8" style="background: url('../../img/login_pwd.png') no-repeat"></i>
+                            <input type="password" name="password" value="" class="width-full height-40 border-0 outline-0" />
+                        </div>
+                    </div>
+                    <div class="height-18 margin-bottom-15">
+                        <input type="checkbox" name="remember" value="1" class="width-18 height-18" /><label for="remember" class="margin-left-15 vertical-top">记住账号</label>
+                    </div>
+                    <div class="margin-bottom-15">
+                        <input type="submit" value="登陆" class="width-full height-50 line-height-50 bg-azure color-white font-size-18 text-center border-0">
+                    </div>
+                    <div class="margin-bottom-15">
+                        <span><a href="#">忘记密码？</a></span>
+                        <span class="pull-right"><a href="#">没有账号，立即注册？</a></span>
+                        <span style="clear: both;"></span>
+                    </div>
                 }
-            </div>
-        </div>
 
-        <div class="foot"></div>
+            </div>
+
+            <div style="clear: both;"></div>
+        </div>
     </div>
 
     <script src="../../plugins/jquery/jquery.js"></script>
     <script src="../../plugins/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
     <script src="../../plugins/jquery.validate/jquery.validate.js"></script>
     <script src="../../plugins/jquery.validate.unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="../../js/form.js"></script>
 </body>
 </html>

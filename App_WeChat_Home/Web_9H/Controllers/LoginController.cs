@@ -1,4 +1,6 @@
-﻿using Helper_9H;
+﻿using BLL_9H;
+using Helper_9H;
+using IBLL_9H;
 using Model_9H;
 using System;
 using System.Collections.Generic;
@@ -10,22 +12,23 @@ namespace Web_9H.Controllers
 {
     public class LoginController : Controller
     {
+        private IUserInfoBLL userInfoBLL = new UserInfoBLL();
+
         public ActionResult Index()
         {
-            //DateTime dt = DateTime.Now;
-            //Session["user"] = new UserInfoModel() {
-            //    ID = 1,
-            //    Mobile = "15210470906",
-            //    Salt = "matrix",
-            //    Password = EncryptHelper.MD5Encrypt(EncryptHelper.MD5Encrypt("123456") + "matrix"),
-            //    RealName = "唐群",
-            //    UserStat = 1,
-            //    LoginErrorTimes = 0,
-            //    CreateTime = dt,
-            //    UpdateTime = dt
-            //};
-            //return Redirect("/home");
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(LoginModel model)
+        {
+            RESTfulModel restfulModel = userInfoBLL.Login(model);
+            if (restfulModel.Code == 0)
+            {
+                Session["user"] = "";
+            }
+
+            return Content(userInfoBLL.Login(model).ToString(), "application/json");
         }
     }
 }

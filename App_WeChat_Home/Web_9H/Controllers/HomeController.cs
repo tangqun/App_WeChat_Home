@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Web_9H.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private IAuthBLL authBLL = new AuthBLL();
         private IAuthorizerInfoBLL authorizerInfoBLL = new AuthorizerInfoBLL();

@@ -11,6 +11,8 @@ namespace Helper_9H
     {
         public static string ConnStr = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
 
+        public static string Salt = GetConfig("Salt");
+
         public static string ComponentAppId = GetConfig("ComponentAppId");
         public static string DomainToken = GetConfig("DomainToken");
         public static string Domain = GetConfig("Domain");

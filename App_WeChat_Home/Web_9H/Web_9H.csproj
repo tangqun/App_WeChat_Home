@@ -114,6 +114,7 @@
     <Content Include="img\login_bg.png" />
     <Content Include="img\login_pwd.png" />
     <Content Include="img\login_user.png" />
+    <Content Include="js\form.js" />
     <Content Include="login.html" />
     <Content Include="plugins\bootstrap\css\bootstrap-theme.css" />
     <Content Include="plugins\bootstrap\css\bootstrap-theme.css.map" />
@@ -181,7 +182,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="js\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
