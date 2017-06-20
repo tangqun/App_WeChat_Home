@@ -9,7 +9,7 @@ namespace IBLL_9H
 {
     public interface IAuthBLL
     {
-        string GetPreAuthCode();
+        string GetPreAuthCodeUrl();
         RESTfulModel RecvAuth(string authCode, int expiresIn, int userID);
     }
 }

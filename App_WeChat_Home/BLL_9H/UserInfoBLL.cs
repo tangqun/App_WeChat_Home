@@ -49,7 +49,7 @@ namespace BLL_9H
             }
             catch (Exception ex)
             {
-                LogHelper.Error("唐群", ex);
+                LogHelper.Error(ex);
                 return new RESTfulModel() { Code = (int)CodeEnum.系统异常, Msg = codeMsgDAL.GetByCode((int)CodeEnum.系统异常) };
             }
         }
@@ -62,7 +62,7 @@ namespace BLL_9H
             }
             catch (Exception ex)
             {
-                LogHelper.Error("唐群", ex);
+                LogHelper.Error(ex);
                 return null;
             }
         }

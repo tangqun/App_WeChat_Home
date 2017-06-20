@@ -27,7 +27,7 @@ namespace BLL_9H
 
                 string responseBody = HttpHelper.Get(url);
 
-                LogHelper.Info("获取素材总数" + "\r\n\r\nresponseBody: " + responseBody);
+                LogHelper.Info("获取素材总数 responseBody", responseBody);
 
                 //int count = 0;
                 //switch (type)
@@ -42,7 +42,7 @@ namespace BLL_9H
             }
             catch (Exception ex)
             {
-                LogHelper.Error("唐群", ex);
+                LogHelper.Error(ex);
                 return null;
             }
         }
@@ -59,17 +59,17 @@ namespace BLL_9H
                 req.Count = count;
                 string requestBody = JsonConvert.SerializeObject(req);
                 
-                LogHelper.Info("获取素材列表" + "\r\n\r\nrequestBody: " + requestBody);
+                LogHelper.Info("获取素材列表 requestBody", requestBody);
 
                 string responseBody = HttpHelper.Post(url, requestBody);
 
-                LogHelper.Info("获取素材列表" + "\r\n\r\nrequestBody: " + requestBody + "\r\n\r\nresponseBody: " + responseBody);
+                LogHelper.Info("获取素材列表 responseBody", responseBody);
 
                 return responseBody;
             }
             catch (Exception ex)
             {
-                LogHelper.Error("唐群", ex);
+                LogHelper.Error(ex);
                 return null;
             }
         }
@@ -131,7 +131,7 @@ namespace BLL_9H
             }
             catch (Exception ex)
             {
-                LogHelper.Error("唐群", ex);
+                LogHelper.Error(ex);
                 return null;
             }
         }

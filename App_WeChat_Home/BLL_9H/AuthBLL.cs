@@ -20,7 +20,7 @@ namespace BLL_9H
         private IAuthorizerInfoDAL authorizerInfoDAL = new AuthorizerInfoDAL();
         private ICodeMsgDAL codeMsgDAL = new CodeMsgDAL();
 
-        public string GetPreAuthCode()
+        public string GetPreAuthCodeUrl()
         {
             try
             {
@@ -29,31 +29,28 @@ namespace BLL_9H
                 string component_access_token = componentAccessTokenDAL.Get();
                 string url = "https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token=" + component_access_token;
 
-                LogHelper.Info("3、获取预授权码url: " + url);
+                LogHelper.Info("3、获取预授权码pre_auth_code url", url);
 
                 PreAuthCodeGetReq req = new PreAuthCodeGetReq();
                 req.ComponentAppId = componentAppId;
                 string requestBody = JsonConvert.SerializeObject(req);
 
-                LogHelper.Info("3、获取预授权码pre_auth_code，requestBody: " + requestBody);
+                LogHelper.Info("3、获取预授权码pre_auth_code requestBody", requestBody);
 
                 string responseBody = HttpHelper.Post("", requestBody);
 
-                LogHelper.Info("3、获取预授权码pre_auth_code，responseBody: " + responseBody);
+                LogHelper.Info("3、获取预授权码pre_auth_code responseBody", responseBody);
 
-                if (!string.IsNullOrEmpty(responseBody))
-                {
-                    PreAuthCodeGetResp resp = JsonConvert.DeserializeObject<PreAuthCodeGetResp>(responseBody);
-                    if (resp != null)
-                    {
-                        return resp.PreAuthCode;
-                    }
-                }
-                return "";
+                PreAuthCodeGetResp resp = JsonConvert.DeserializeObject<PreAuthCodeGetResp>(responseBody);
+
+                string redirectUri = ConfigHelper.Domain + "home/recvauth";
+
+                return "https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=" + componentAppId + "&pre_auth_code=" + resp.PreAuthCode + "&redirect_uri=" + redirectUri;
             }
             catch (Exception ex)
             {
-                LogHelper.Error("唐群", ex);
+                LogHelper.Error(ex);
+                // want ex
                 return null;
             }
         }
@@ -70,13 +67,13 @@ namespace BLL_9H
                 req.AuthorizationCode = authCode;
                 string requestBody = JsonConvert.SerializeObject(req);
 
-                LogHelper.Info("4、使用授权码换取公众号的接口调用凭据和授权信息" + "\r\n\r\nrequestBody: " + requestBody);
+                LogHelper.Info("4、使用授权码换取公众号的接口调用凭据和授权信息 requestBody", requestBody);
 
                 string componentAccessToken = componentAccessTokenDAL.Get();
 
                 string responseBody = HttpHelper.Post("https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token=" + componentAccessTokenDAL.Get(), requestBody);
 
-                LogHelper.Info("4、使用授权码换取公众号的接口调用凭据和授权信息" + "\r\n\r\nrequestBody: " + requestBody + "\r\n\r\nresponseBody: " + responseBody);
+                LogHelper.Info("4、使用授权码换取公众号的接口调用凭据和授权信息 responseBody", responseBody);
 
                 AuthorizationInfoGetResp resp = JsonConvert.DeserializeObject<AuthorizationInfoGetResp>(responseBody);
                 #region 授权信息存数据库
@@ -129,7 +126,7 @@ namespace BLL_9H
             }
             catch (Exception ex)
             {
-                LogHelper.Error("唐群", ex);
+                LogHelper.Error(ex);
                 return new RESTfulModel() { Code = (int)CodeEnum.系统异常, Msg = codeMsgDAL.GetByCode((int)CodeEnum.系统异常) };
             }
         }
@@ -142,11 +139,11 @@ namespace BLL_9H
             req.AuthorizerAppID = authorizerAppID;
             string requestBody = JsonConvert.SerializeObject(req);
 
-            LogHelper.Info("6、获取授权方的公众号帐号基本信息" + "\r\n\r\nrequestBody: " + requestBody);
+            LogHelper.Info("6、获取授权方的公众号帐号基本信息 requestBody", requestBody);
 
             string responseBody = HttpHelper.Post("https://api.weixin.qq.com/cgi-bin/component/api_get_authorizer_info?component_access_token=" + componentAccessToken, requestBody);
 
-            LogHelper.Info("6、获取授权方的公众号帐号基本信息" + "\r\n\r\nrequestBody: " + requestBody + "\r\n\r\nresponseBody: " + responseBody);
+            LogHelper.Info("6、获取授权方的公众号帐号基本信息 responseBody", responseBody);
 
             AuthorizerInfoGetResp resp = JsonConvert.DeserializeObject<AuthorizerInfoGetResp>(responseBody);
 

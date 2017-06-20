@@ -14,13 +14,16 @@ namespace DAL_9H
         public string Get()
         {
             string url = ConfigHelper.DomainToken + "api/componentaccesstoken/get";
-            
+
+            LogHelper.Info("获取component_access_token url", url);
+
             string responseBody = HttpHelper.Get(url);
-            LogHelper.Info("获取component_access_token: " + "\r\n\r\nresponseBody: " + responseBody);
 
-            RESTfulModel r = JsonConvert.DeserializeObject<RESTfulModel>(responseBody);
+            LogHelper.Info("获取component_access_token responseBody", responseBody);
 
-            return r.Data.ToString();
+            RESTfulModel resp = JsonConvert.DeserializeObject<RESTfulModel>(responseBody);
+
+            return resp.Data.ToString();
         }
     }
 }
