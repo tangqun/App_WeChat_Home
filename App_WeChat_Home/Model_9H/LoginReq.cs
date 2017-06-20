@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model_9H
 {
-    public class LoginModel
+    public class LoginReq
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "手机号不能为空")]
         public string Mobile { get; set; }

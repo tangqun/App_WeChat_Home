@@ -15,7 +15,7 @@ namespace BLL_9H
     {
         private IAuthorizerInfoDAL authorizerInfoDAL = new AuthorizerInfoDAL();
 
-        public List<AuthorizerInfoModel> GetList(int userID)
+        public List<AuthorizerInfoModel> GetList(string userID)
         {
             try
             {

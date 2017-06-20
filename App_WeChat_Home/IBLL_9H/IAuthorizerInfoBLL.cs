@@ -9,7 +9,7 @@ namespace IBLL_9H
 {
     public interface IAuthorizerInfoBLL
     {
-        List<AuthorizerInfoModel> GetList(int userID);
+        List<AuthorizerInfoModel> GetList(string userID);
         AuthorizerInfoModel GetModel(int id);
     }
 }

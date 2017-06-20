@@ -16,7 +16,7 @@ namespace BLL_9H
         private ICodeMsgDAL codeMsgDAL = new CodeMsgDAL();
         private IUserInfoDAL userInfoDAL = new UserInfoDAL();
 
-        public RESTfulModel Login(LoginModel model)
+        public RESTfulModel Login(LoginReq model)
         {
             try
             {
@@ -29,7 +29,13 @@ namespace BLL_9H
 
                     if (userInfoModel.Password == pwd)
                     {
-                        return new RESTfulModel() { Code = (int)CodeEnum.成功, Msg = string.Format(codeMsgDAL.GetByCode((int)CodeEnum.成功), "登陆成功") };
+                        string token = Guid.NewGuid().ToString().Replace("-", "");
+                        // 更新token
+                        userInfoDAL.UpdateToken(userInfoModel.BusinessID, token, DateTime.Now);
+
+                        // 记录token日志
+
+                        return new RESTfulModel() { Code = (int)CodeEnum.成功, Msg = string.Format(codeMsgDAL.GetByCode((int)CodeEnum.成功), "登陆成功"), Data = userInfoModel };
                     }
                     else
                     {
@@ -45,6 +51,19 @@ namespace BLL_9H
             {
                 LogHelper.Error("唐群", ex);
                 return new RESTfulModel() { Code = (int)CodeEnum.系统异常, Msg = codeMsgDAL.GetByCode((int)CodeEnum.系统异常) };
+            }
+        }
+
+        public UserInfoModel GetByToken(string token)
+        {
+            try
+            {
+                return userInfoDAL.GetByToken(token);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error("唐群", ex);
+                return null;
             }
         }
     }

@@ -13,6 +13,35 @@ namespace DAL_9H
 {
     public class AuthorizerInfoDAL : IAuthorizerInfoDAL
     {
+        public List<AuthorizerInfoModel> GetList(string userID)
+        {
+            string sql =
+                        @"SELECT
+                            `id`,
+                            `user_id`,
+                            `authorizer_appid`,
+                            `nick_name`,
+                            `head_img`,
+                            `service_type_info`,
+                            `verify_type_info`,
+                            `user_name`,
+                            `alias`,
+                            `qrcode_url`,
+                            `open_pay`,
+                            `open_shake`,
+                            `open_scan`,
+                            `open_card`,
+                            `open_store`,
+                            `idc`,
+                            `principal_name`,
+                            `create_time`,
+                            `update_time`
+                        FROM `authorizer_info`
+                        WHERE `user_id` = @user_id";
+            DataTable dt = MySqlHelper.ExecuteDataset(ConfigHelper.ConnStr, sql, new MySqlParameter("@user_id", userID)).Tables[0];
+            return EntityListToModelList(dt);
+        }
+
         public int Insert(int userID, string authorizerAppID, string nickName, string headImg, int serviceTypeInfo, int verifyTypeInfo, string user_name, string alias, string qrcodeUrl, int openPay, int openShake, int openScan, int openCard, int openStore, int idc, string principalName, DateTime createTime)
         {
             string sql =
@@ -54,7 +83,7 @@ namespace DAL_9H
                                 @create_time,
                                 @update_time);
                         SELECT @@IDENTITY;";
-            MySqlParameter[] parameters = { 
+            MySqlParameter[] parameters = {
                                               new MySqlParameter("@user_id", userID),
                                               new MySqlParameter("@authorizer_appid", authorizerAppID),
                                               new MySqlParameter("@nick_name", nickName),
@@ -96,7 +125,7 @@ namespace DAL_9H
                             `principal_name` = @principal_name,
                             `update_time` = @update_time
                         WHERE `authorizer_appid` = @authorizer_appid;";
-            MySqlParameter[] parameters = { 
+            MySqlParameter[] parameters = {
                                               new MySqlParameter("@nick_name", nickName),
                                               new MySqlParameter("@head_img", headImg),
                                               new MySqlParameter("@service_type_info", serviceTypeInfo),
@@ -143,35 +172,6 @@ namespace DAL_9H
                         WHERE `authorizer_appid` = @authorizer_appid LIMIT 0, 1;";
             DataRow dr = MySqlHelper.ExecuteDataRow(ConfigHelper.ConnStr, sql, new MySqlParameter("@authorizer_appid", authorizerAppID));
             return EntityToModel(dr);
-        }
-
-        public List<AuthorizerInfoModel> GetList(int userID)
-        {
-            string sql =
-                        @"SELECT
-                            `id`,
-                            `user_id`,
-                            `authorizer_appid`,
-                            `nick_name`,
-                            `head_img`,
-                            `service_type_info`,
-                            `verify_type_info`,
-                            `user_name`,
-                            `alias`,
-                            `qrcode_url`,
-                            `open_pay`,
-                            `open_shake`,
-                            `open_scan`,
-                            `open_card`,
-                            `open_store`,
-                            `idc`,
-                            `principal_name`,
-                            `create_time`,
-                            `update_time`
-                        FROM `authorizer_info`
-                        WHERE `user_id` = @user_id";
-            DataTable dt = MySqlHelper.ExecuteDataset(ConfigHelper.ConnStr, sql, new MySqlParameter("@user_id", userID)).Tables[0];
-            return EntityListToModelList(dt);
         }
 
         public List<AuthorizerInfoModel> GetList()

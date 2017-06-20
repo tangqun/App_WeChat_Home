@@ -53,6 +53,7 @@
     <Compile Include="LogHelper.cs" />
     <Compile Include="ParseHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UtilsHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

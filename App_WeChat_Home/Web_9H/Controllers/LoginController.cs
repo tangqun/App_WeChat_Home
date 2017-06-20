@@ -20,15 +20,15 @@ namespace Web_9H.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(LoginModel model)
+        public ActionResult Index(LoginReq model)
         {
             RESTfulModel restfulModel = userInfoBLL.Login(model);
             if (restfulModel.Code == 0)
             {
-                Session["user"] = "";
+                Session["user"] = restfulModel.Data as UserInfoModel;
             }
 
-            return Content(userInfoBLL.Login(model).ToString(), "application/json");
+            return Content(restfulModel.ToString(), "application/json");
         }
     }
 }

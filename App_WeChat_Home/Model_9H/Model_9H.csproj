@@ -50,7 +50,7 @@
     <Compile Include="CodeMsgModel.cs" />
     <Compile Include="Enums\CodeEnum.cs" />
     <Compile Include="FuncInfoModel.cs" />
-    <Compile Include="LoginModel.cs" />
+    <Compile Include="LoginReq.cs" />
     <Compile Include="MaterialInfoModel.cs" />
     <Compile Include="NewsTypeMaterialInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

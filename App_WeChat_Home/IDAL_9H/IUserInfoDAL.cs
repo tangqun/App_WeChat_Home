@@ -10,5 +10,9 @@ namespace IDAL_9H
     public interface IUserInfoDAL
     {
         UserInfoModel GetModel(string mobile);
+
+        bool UpdateToken(string bID, string token, DateTime dt);
+
+        UserInfoModel GetByToken(string token);
     }
 }

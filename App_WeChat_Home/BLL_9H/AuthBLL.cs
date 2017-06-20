@@ -26,15 +26,20 @@ namespace BLL_9H
             {
                 string componentAppId = ConfigHelper.ComponentAppId;
 
+                string component_access_token = componentAccessTokenDAL.Get();
+                string url = "https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token=" + component_access_token;
+
+                LogHelper.Info("3、获取预授权码url: " + url);
+
                 PreAuthCodeGetReq req = new PreAuthCodeGetReq();
                 req.ComponentAppId = componentAppId;
                 string requestBody = JsonConvert.SerializeObject(req);
 
-                LogHelper.Info("3、获取预授权码pre_auth_code" + "\r\n\r\nrequestBody: " + requestBody);
+                LogHelper.Info("3、获取预授权码pre_auth_code，requestBody: " + requestBody);
 
-                string responseBody = HttpHelper.Post("https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token=" + componentAccessTokenDAL.Get(), requestBody);
+                string responseBody = HttpHelper.Post("", requestBody);
 
-                LogHelper.Info("3、获取预授权码pre_auth_code" + "\r\n\r\nrequestBody: " + requestBody + "\r\n\r\nresponseBody: " + responseBody);
+                LogHelper.Info("3、获取预授权码pre_auth_code，responseBody: " + responseBody);
 
                 if (!string.IsNullOrEmpty(responseBody))
                 {

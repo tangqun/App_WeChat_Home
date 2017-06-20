@@ -9,6 +9,8 @@ namespace IBLL_9H
 {
     public interface IUserInfoBLL
     {
-        RESTfulModel Login(LoginModel model);
+        RESTfulModel Login(LoginReq model);
+
+        UserInfoModel GetByToken(string token);
     }
 }

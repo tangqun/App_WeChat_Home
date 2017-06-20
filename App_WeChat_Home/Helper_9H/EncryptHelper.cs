@@ -13,7 +13,7 @@ namespace Helper_9H
         {
             MD5 md5 = new MD5CryptoServiceProvider();
             byte[] bytes_New = md5.ComputeHash(Encoding.UTF8.GetBytes(str));
-            return BitConverter.ToString(bytes_New).Replace("-", "");
+            return BitConverter.ToString(bytes_New).Replace("-", "").ToLower();
         }
     }
 }

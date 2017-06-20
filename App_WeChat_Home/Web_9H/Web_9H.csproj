@@ -100,22 +100,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\common.css" />
-    <Content Include="css\fix.css" />
-    <Content Include="css\layout.css" />
     <Content Include="css\login.css" />
     <Content Include="Global.asax" />
     <Content Include="img\account_kind_app.png" />
     <Content Include="img\account_kind_enterprise.png" />
     <Content Include="img\account_kind_service.png" />
     <Content Include="img\account_kind_subscribe.png" />
+    <Content Include="img\avatar.png" />
     <Content Include="img\bg_login_banner.jpg" />
     <Content Include="img\icon_menu_function.png" />
     <Content Include="img\icon_menu_management.png" />
     <Content Include="img\login_bg.png" />
     <Content Include="img\login_pwd.png" />
     <Content Include="img\login_user.png" />
-    <Content Include="js\form.js" />
-    <Content Include="login.html" />
+    <Content Include="js\login.js" />
     <Content Include="plugins\bootstrap\css\bootstrap-theme.css" />
     <Content Include="plugins\bootstrap\css\bootstrap-theme.css.map" />
     <Content Include="plugins\bootstrap\css\bootstrap-theme.min.css" />
@@ -160,7 +158,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="plugins\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
