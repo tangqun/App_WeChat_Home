@@ -18,9 +18,10 @@ namespace Helper_9H
             logError.Error("作者：" + authorName + "，日期：" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "，堆栈信息：" + ex.StackTrace + "，异常信息：" + ex.Message);
         }
 
-        public static void Info(string msg)
+        public static void Info(string title, string msg)
         {
-            logInfo.Info(msg);
+            string output = "时间：" + "标题：" + title + "\r\n\r\n" + "内容：" + msg;
+            logInfo.Info(output);
         }
     }
 }
