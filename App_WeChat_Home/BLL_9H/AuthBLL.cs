@@ -26,8 +26,8 @@ namespace BLL_9H
             {
                 string componentAppId = ConfigHelper.ComponentAppId;
 
-                string component_access_token = componentAccessTokenDAL.Get();
-                string url = "https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token=" + component_access_token;
+                string componentAccessToken = componentAccessTokenDAL.Get();
+                string url = "https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token=" + componentAccessToken;
 
                 LogHelper.Info("3、获取预授权码pre_auth_code url", url);
 
@@ -55,11 +55,16 @@ namespace BLL_9H
             }
         }
 
-        public RESTfulModel RecvAuth(string authCode, int expiresIn, int userID)
+        public RESTfulModel RecvAuth(string authCode, int expiresIn, string userID)
         {
             try
             {
                 string componentAppID = ConfigHelper.ComponentAppId;
+
+                string componentAccessToken = componentAccessTokenDAL.Get();
+                string url = "https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token=" + componentAccessToken;
+
+                LogHelper.Info("4、使用授权码换取公众号的接口调用凭据和授权信息 url", url);
 
                 // 4、使用授权码换取公众号的接口调用凭据和授权信息
                 AuthorizationInfoGetReq req = new AuthorizationInfoGetReq();
@@ -69,59 +74,13 @@ namespace BLL_9H
 
                 LogHelper.Info("4、使用授权码换取公众号的接口调用凭据和授权信息 requestBody", requestBody);
 
-                string componentAccessToken = componentAccessTokenDAL.Get();
-
-                string responseBody = HttpHelper.Post("https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token=" + componentAccessTokenDAL.Get(), requestBody);
+                string responseBody = HttpHelper.Post(url, requestBody);
 
                 LogHelper.Info("4、使用授权码换取公众号的接口调用凭据和授权信息 responseBody", responseBody);
 
                 AuthorizationInfoGetResp resp = JsonConvert.DeserializeObject<AuthorizationInfoGetResp>(responseBody);
-                #region 授权信息存数据库
-                // 授权信息存数据库
-                AuthorizationInfoModel authorizationInfoModel = authorizationInfoDAL.GetModel(resp.AuthorizationInfo.AuthorizerAppID);
-                if (authorizationInfoModel != null)
-                {
-                    // 更新
-                    bool res = authorizationInfoDAL.Update(
-                        resp.AuthorizationInfo.AuthorizerAppID,
-                        authorizationInfoModel.AuthorizerAccessToken,// 当前的置为旧的，用于消息延时
-                        resp.AuthorizationInfo.AuthorizerAccessToken,
-                        resp.AuthorizationInfo.ExpiresIn,
-                        resp.AuthorizationInfo.AuthorizerRefreshToken,
-                        DateTime.Now);
 
-                    // 删除权限
-                    funcInfoDAL.Delete(resp.AuthorizationInfo.AuthorizerAppID);
-                    // 插入权限，不存在空集合
-                    List<int> funcscopeCategoryIdList = resp.AuthorizationInfo.FuncInfo.Select(o => o.FuncscopeCategory.ID).ToList();
-                    foreach (var funcscopeCategoryId in funcscopeCategoryIdList)
-                    {
-                        funcInfoDAL.Insert(resp.AuthorizationInfo.AuthorizerAppID, funcscopeCategoryId);
-                    }
-
-                    return Authorize(componentAppID, resp.AuthorizationInfo.AuthorizerAppID, componentAccessToken, userID);
-                }
-                else
-                {
-                    // 插入
-                    int id = authorizationInfoDAL.Insert(
-                        resp.AuthorizationInfo.AuthorizerAppID,
-                        resp.AuthorizationInfo.AuthorizerAccessToken,
-                        resp.AuthorizationInfo.AuthorizerAccessToken,
-                        resp.AuthorizationInfo.ExpiresIn,
-                        resp.AuthorizationInfo.AuthorizerRefreshToken,
-                        DateTime.Now);
-
-                    // 插入权限
-                    List<int> funcscopeCategoryIdList = resp.AuthorizationInfo.FuncInfo.Select(o => o.FuncscopeCategory.ID).ToList();
-                    foreach (var funcscopeCategoryId in funcscopeCategoryIdList)
-                    {
-                        funcInfoDAL.Insert(resp.AuthorizationInfo.AuthorizerAppID, funcscopeCategoryId);
-                    }
-
-                    // 授权成功
-                    return Authorize(componentAppID, resp.AuthorizationInfo.AuthorizerAppID, componentAccessToken, userID);
-                }
+                return Authorize(componentAppID, resp.AuthorizationInfo.AuthorizerAppID, componentAccessToken, userID);
                 #endregion
             }
             catch (Exception ex)
@@ -131,7 +90,7 @@ namespace BLL_9H
             }
         }
 
-        private RESTfulModel Authorize(string componentAppID, string authorizerAppID, string componentAccessToken, int userID)
+        private RESTfulModel Authorize(string componentAppID, string authorizerAppID, string componentAccessToken, string userID)
         {
             // 二次授权成功
             AuthorizerInfoGetReq req = new AuthorizerInfoGetReq();
