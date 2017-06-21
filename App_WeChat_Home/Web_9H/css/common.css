@@ -99,3 +99,4 @@ body {
 .bg-azure .nav .open>a, .bg-azure .nav .open>a:hover, .bg-azure .nav .open>a:focus { color: #ffffff; background-color: rgba(0,0,0,0.1) } 
 .navbar-nav > li > a { padding-top: 15px; padding-bottom: 15px; }
 .form-group { display: inline-block; margin: 0; vertical-align: middle; }
+.form-inline .form-control { display: inline-block; width: auto; vertical-align: middle; }
