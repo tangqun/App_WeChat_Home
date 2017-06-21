@@ -140,6 +140,7 @@
     <Content Include="plugins\jquery.validate.unobtrusive\jquery.validate.unobtrusive.min.js" />
     <Content Include="plugins\jquery.validate\jquery.validate.js" />
     <Content Include="plugins\jquery.validate\jquery.validate.min.js" />
+    <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -165,7 +166,6 @@
     <Content Include="Log4Net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <None Include="Web.Debug.config">
