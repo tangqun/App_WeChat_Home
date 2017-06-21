@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IBLL_9H
 {
-    public interface IAuthBLL
+    public interface IAuthorizationBLL
     {
         string GetPreAuthCodeUrl();
         RESTfulModel SaveAuth(string authCode, int expiresIn, string userID);

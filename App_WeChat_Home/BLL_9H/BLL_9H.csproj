@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthBLL.cs" />
+    <Compile Include="AuthorizationBLL.cs" />
     <Compile Include="AuthorizerInfoBLL.cs" />
     <Compile Include="MaterialBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
