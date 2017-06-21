@@ -20,7 +20,7 @@ namespace Web_9H.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(LoginReq model)
+        public ActionResult Index(LoginModel model)
         {
             RESTfulModel restfulModel = userInfoBLL.Login(model);
             if (restfulModel.Code == 0)

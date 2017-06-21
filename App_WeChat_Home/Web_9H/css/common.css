@@ -16,7 +16,6 @@ ul, ol { list-style-type: none; margin-bottom: 0; padding-left: 0; }
 
 body {
     font-family: 'Microsoft YaHei', Arial, Helvetica, sans-serif;
-    font-size: 12px;
     color: #666666;
     -webkit-font-smoothing: antialiased;
 }
@@ -68,6 +67,7 @@ body {
 .margin-left-5 { margin-left: 5px; }
 .margin-left-15 { margin-left: 15px; }
 .margin-right-15 { margin-right: 15px; }
+.margin-0 { margin: 0; }
 
 .padding-top-15 { padding-top: 15px; }
 .padding-bottom-15 { padding-bottom: 15px; }
@@ -97,3 +97,5 @@ body {
 
 .bg-azure .nav>li>a:hover, .bg-azure .nav>li>a:focus,
 .bg-azure .nav .open>a, .bg-azure .nav .open>a:hover, .bg-azure .nav .open>a:focus { color: #ffffff; background-color: rgba(0,0,0,0.1) } 
+.navbar-nav > li > a { padding-top: 15px; padding-bottom: 15px; }
+.form-group { display: inline-block; margin: 0; vertical-align: middle; }

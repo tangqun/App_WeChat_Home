@@ -16,7 +16,7 @@ namespace BLL_9H
         private ICodeMsgDAL codeMsgDAL = new CodeMsgDAL();
         private IUserInfoDAL userInfoDAL = new UserInfoDAL();
 
-        public RESTfulModel Login(LoginReq model)
+        public RESTfulModel Login(LoginModel model)
         {
             try
             {

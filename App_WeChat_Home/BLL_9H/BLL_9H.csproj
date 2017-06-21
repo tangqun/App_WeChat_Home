@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="AuthorizationBLL.cs" />
     <Compile Include="AuthorizerInfoBLL.cs" />
-    <Compile Include="MaterialBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInfoBLL.cs" />
   </ItemGroup>
