@@ -26,7 +26,8 @@ namespace Web_9H.Controllers
 
         public ActionResult SaveAuth(string auth_code, int expires_in)
         {
-            return View(authorizationBLL.SaveAuth(auth_code, expires_in, CurrentUser.BusinessID));
+            authorizationBLL.SaveAuth(auth_code, expires_in, CurrentUser.BusinessID);
+            return RedirectToAction("index");
         }
     }
 }

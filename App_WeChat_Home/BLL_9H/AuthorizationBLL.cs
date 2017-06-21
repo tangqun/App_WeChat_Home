@@ -121,7 +121,7 @@ namespace BLL_9H
                     #endregion
 
                     // 保存授权者信息
-                    return Authorize(componentAppID, componentAccessToken, resp_4.AuthorizationInfo.AuthorizerAppID, userID, authTime);
+                    return SaveAuthorizer(componentAppID, componentAccessToken, resp_4.AuthorizationInfo.AuthorizerAppID, userID, authTime);
                 }
                 else
                 {
@@ -135,7 +135,7 @@ namespace BLL_9H
             }
         }
 
-        private RESTfulModel Authorize(string componentAppID, string componentAccessToken, string authorizerAppID, string userID, DateTime authTime)
+        private RESTfulModel SaveAuthorizer(string componentAppID, string componentAccessToken, string authorizerAppID, string userID, DateTime authTime)
         {
             #region 6、获取授权方的公众号帐号基本信息
             string url_6 = "https://api.weixin.qq.com/cgi-bin/component/api_get_authorizer_info?component_access_token=" + componentAccessToken;
