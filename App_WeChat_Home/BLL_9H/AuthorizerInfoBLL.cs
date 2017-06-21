@@ -27,18 +27,5 @@ namespace BLL_9H
                 return null;
             }
         }
-
-        public AuthorizerInfoModel GetModel(int id)
-        {
-            try
-            {
-                return authorizerInfoDAL.GetModel(id);
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error(ex);
-                return null;
-            }
-        }
     }
 }

@@ -24,9 +24,9 @@ namespace Web_9H.Controllers
             return Redirect(authBLL.GetPreAuthCodeUrl());
         }
 
-        public ActionResult RecvAuth(string auth_code, int expires_in)
+        public ActionResult SaveAuth(string auth_code, int expires_in)
         {
-            return View(authBLL.RecvAuth(auth_code, expires_in, CurrentUser.BusinessID));
+            return View(authBLL.SaveAuth(auth_code, expires_in, CurrentUser.BusinessID));
         }
     }
 }
