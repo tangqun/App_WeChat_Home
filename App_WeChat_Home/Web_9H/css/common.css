@@ -37,7 +37,7 @@ body {
 .overflow-hide { overflow: hidden; }
 .overflow-scroll { overflow-x: hidden; overflow-y: auto; }
 
-/* width & height & min-height & line-height */
+/* width & height & min-width & min-height & line-heigth */
 .width-full { width: 100%; }
 .width-40 { width: 40px; }
 .width-65 { width: 65px; }
@@ -58,7 +58,7 @@ body {
 .line-height-28 { line-height: 28px; }
 .line-height-50 { line-height: 50px; }
 
-/* margin & padding & border */
+/* margin & padding & border & outline */
 .margin-horizontal-center { margin: 0 auto; }
 
 .margin-top--10 { margin-top: -10px; }

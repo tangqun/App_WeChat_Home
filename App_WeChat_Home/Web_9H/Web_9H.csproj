@@ -107,10 +107,7 @@
     <Content Include="img\account_kind_service.png" />
     <Content Include="img\account_kind_subscribe.png" />
     <Content Include="img\avatar.png" />
-    <Content Include="img\bg_login_banner.jpg" />
-    <Content Include="img\icon_menu_function.png" />
-    <Content Include="img\icon_menu_management.png" />
-    <Content Include="img\login_bg.png" />
+    <Content Include="img\login_banner_bg.png" />
     <Content Include="img\login_pwd.png" />
     <Content Include="img\login_user.png" />
     <Content Include="js\login.js" />
