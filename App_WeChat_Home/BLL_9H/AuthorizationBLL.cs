@@ -42,7 +42,7 @@ namespace BLL_9H
 
                 PreAuthCodeGetResp resp_3 = JsonConvert.DeserializeObject<PreAuthCodeGetResp>(responseBody_3);
 
-                string redirectUri = ConfigHelper.Domain + "home/recvauth";
+                string redirectUri = ConfigHelper.Domain + "home/saveauth";
 
                 return "https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=" + componentAppId + "&pre_auth_code=" + resp_3.PreAuthCode + "&redirect_uri=" + redirectUri;
             }
