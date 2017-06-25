@@ -11,7 +11,7 @@ namespace DAL_9H
 {
     public class AccessTokenDAL : IAccessTokenDAL
     {
-        public string Get(string authorizerAppID)
+        public AuthorizationInfoModel Get(string authorizerAppID)
         {
             string url = ConfigHelper.DomainToken + "api/accesstoken/get?authorizerappid=" + authorizerAppID;
 
@@ -23,7 +23,9 @@ namespace DAL_9H
 
             RESTfulModel resp = JsonConvert.DeserializeObject<RESTfulModel>(responseBody);
 
-            return resp.Data.ToString();
+            AuthorizationInfoModel model = resp.Data as AuthorizationInfoModel;
+
+            return model;
         }
     }
 }
