@@ -11,7 +11,7 @@ namespace Web_9H.Controllers
 {
     public class HomeController : BaseController
     {
-        private IAuthorizationBLL authorizationBLL = new AuthorizationBLL();
+        private IAuthorizationInfoBLL authorizationInfoBLL = new AuthorizationInfoBLL();
         private IAuthorizerInfoBLL authorizerInfoBLL = new AuthorizerInfoBLL();
 
         public ActionResult Index()
@@ -21,12 +21,12 @@ namespace Web_9H.Controllers
 
         public ActionResult GoAuth()
         {
-            return Redirect(authorizationBLL.GetPreAuthCodeUrl());
+            return Redirect(authorizationInfoBLL.GetPreAuthCodeUrl());
         }
 
         public ActionResult SaveAuth(string auth_code, int expires_in)
         {
-            authorizationBLL.SaveAuth(auth_code, expires_in, CurrentUser.BusinessID);
+            authorizationInfoBLL.SaveAuth(auth_code, expires_in, CurrentUser.BusinessID);
             return RedirectToAction("index");
         }
     }

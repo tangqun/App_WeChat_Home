@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAuthorizationBLL.cs" />
+    <Compile Include="IAuthorizationInfoBLL.cs" />
     <Compile Include="IAuthorizerInfoBLL.cs" />
     <Compile Include="IUserInfoBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

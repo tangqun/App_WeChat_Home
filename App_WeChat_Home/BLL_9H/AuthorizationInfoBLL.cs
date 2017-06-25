@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BLL_9H
 {
-    public class AuthorizationBLL: IAuthorizationBLL
+    public class AuthorizationInfoBLL: IAuthorizationInfoBLL
     {
         private ICodeMsgDAL codeMsgDAL = new CodeMsgDAL();
         private IComponentAccessTokenDAL componentAccessTokenDAL = new ComponentAccessTokenDAL();
