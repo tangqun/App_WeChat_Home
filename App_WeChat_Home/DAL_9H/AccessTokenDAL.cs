@@ -23,9 +23,9 @@ namespace DAL_9H
 
             RESTfulModel resp = JsonConvert.DeserializeObject<RESTfulModel>(responseBody);
 
-            AuthorizationInfoModel model = resp.Data as AuthorizationInfoModel;
+            AuthorizationInfoModel authorizationInfoModel = JsonConvert.DeserializeObject<AuthorizationInfoModel>(resp.Data.ToString());
 
-            return model;
+            return authorizationInfoModel;
         }
     }
 }
